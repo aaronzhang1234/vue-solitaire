@@ -1,0 +1,16 @@
+#finished_piles{
+    display:inline;
+}
+img{
+    height:8vh;
+    width:auto;
+}
+
+div#main_cards{
+    display:inline-block;
+}
+div#playing_field>div{
+    margin: 0vw 3vw 0vw 3vw;
+    display:inline-block;
+    vertical-align:top;
+}

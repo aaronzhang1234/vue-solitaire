@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<head>
+    <title>Cards</title>
+    <meta charset ="utf-8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sortablejs@1.7.0/Sortable.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.15.0/vuedraggable.min.js"></script>
+</head>
+<body>
+    <h1 id = "title">Deck of Cards</h1>
+    <div id='main_pile'>
+      <h1>Main Pile</h1>
+      <div id="main_cards" v-for="card in cards">
+        <card-item :card_img="card.img"></card-item>
+      </div>
+    </div>
+    <h1>Holding Pile</h1>
+    <div id='holding_pile'>
+    </div>
+
+    <div id="playing_field">
+      <div id="pile_1">
+        <h1>Pile 1</h1>
+        <div v-for="card in cards">
+          <card-item :card_img="card.img"></card-item>
+        </div>
+      </div>
+
+      <div id="pile_2">
+        <h1>Pile 2</h1>
+        <div v-for="card in cards">
+          <card-item :card_img="card.img"></card-item>
+        </div>
+      </div>
+
+      <div id="pile_3">
+        <h1>Pile 3</h1>
+        <div v-for="card in cards">
+          <card-item :card_img="card.img"></card-item>
+        </div>
+      </div>
+
+      <div id="pile_4">
+        <h1>Pile 4</h1>
+        <div v-for="card in cards">
+          <card-item :card_img="card.img"></card-item>
+        </div>
+      </div>
+
+      <div id="pile_5">
+        <h1>Pile 5</h1>
+        <div v-for="card in cards">
+          <card-item :card_img="card.img"></card-item>
+        </div>
+      </div>
+
+      <div id="pile_6">
+        <h1>Pile 6</h1>
+        <div v-for="card in cards">
+          <card-item :card_img="card.img"></card-item>
+        </div>
+      </div>
+
+      <div id="pile_7">
+        <h1>Pile 7</h1>
+        <div v-for="card in cards">
+          <card-item :card_img="card.img"></card-item>
+        </div>
+      </div>
+    </div>
+
+    <div id="finished_piles">
+      <h1>Spades</h1>
+      <div id= "spade_pile">
+      </div>
+      <h1>Clubs</h1>
+      <div id= "club_pile">
+      </div>
+      <h1>Diamonds</h1>
+      <div id= "diamond_pile">
+      </div>
+      <h1>Hearts</h1>
+      <div id= "heart_pile">
+      </div>
+    </div>
+    <div id='app-1'> 
+      <p>{{deck_id}}</p>
+      <button v-on:click="get_deck">Click for Cards</button>
+    </div>
+    <script src="getCards.js"></script>
+</body>
