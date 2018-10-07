@@ -41,11 +41,8 @@ var diamond_pile = {
 var heart_pile = {
     cards:[]
 }
-function click_on(){
-    console.log('clicked');
-}
 Vue.component("card-item",{
-    props:['card_img', "card_id"],
+    props:['card_img', "card_id", "card.active"],
     template:'<img :src="card_img" :id="card_id"></img>'
 })
 
@@ -60,7 +57,10 @@ var global_mixin={
             console.log('hello');
             var card_id = e.srcElement.id;
             e.dataTransfer.setData("card_id", card_id);
-            var from_pile = e.srcElement.parentElement.parentElement.parentElement.id;
+            var from_pile = e.srcElement.parentElement.parentElement.parentElement.parentElement.id;
+            var bleh = e.srcElement.parentElement.parentElement.parentElement;
+            console.log(bleh);
+            console.log(from_pile);
             e.dataTransfer.setData("from_pile", from_pile);
         },   
         drag_over:function(e){
@@ -68,37 +68,101 @@ var global_mixin={
         },
         on_drop:function(e){
             e.preventDefault();
-            console.log('bello');
-            console.log(e.dataTransfer.getData("card_id"));
-            console.log(e.dataTransfer.getData("from_pile"));
-            card = pile_1.cards.pop();
-            pile_2.cards.push(card);
+            var from_pile = e.dataTransfer.getData("from_pile");
+            var card_code = e.dataTransfer.getData("card_id");
+            var to_pile = this.get_pile_name(e.toElement);
+            this.add_card(to_pile, from_pile);
         }, 
-        get_card(){
+        get_pile_name:function(element){
+            while(element){ 
+                if(element.id!=null && (element.id).substring(0,4)=="pile"){
+                    return element.id
+                }
+                element = element.parentElement;
+            }
+            return element.id;
+        },
+        add_card:function(pile_name_to, pile_name_from){
+            console.log(pile_name_to);
+            console.log(pile_name_from);
+            var card_to_add = this.get_card(pile_name_from)
+            console.log(card_to_add);            
+            switch(pile_name_to){
+                case 'pile_1':
+                   pile_1.cards.push(card_to_add); 
+                   break;
+                case 'pile_2':
+                   pile_2.cards.push(card_to_add);
+                   break;
+                case 'pile_3':
+                   pile_3.cards.push(card_to_add);
+                   break;
+                case 'pile_4':
+                   pile_4.cards.push(card_to_add);
+                   break;
+                case 'pile_5':
+                   pile_5.cards.push(card_to_add);
+                   break;
+                case 'pile_6':
+                   pile_6.cards.push(card_to_add);
+                   break;
+                case 'pile_7':
+                   pile_7.cards.push(card_to_add);
+                   break;
+            }
+            
+        },
+        get_card:function(pile_name){
             var card;
             switch(pile_name){
                 case 'pile_1':
                    card = pile_1.cards.pop(); 
+                   if(pile_1.cards.length>0){
+                       pile_1.cards[(pile_1.cards.length)-1].active=true;
+                   } 
                    break;
                 case 'pile_2':
                    card = pile_2.cards.pop();
+                   if(pile_2.cards.length>0){
+                       pile_2.cards[(pile_1.cards.length)-1].active=true;
+                   }
                    break;
                 case 'pile_3':
                    card = pile_3.cards.pop();
+                   if(pile_3.cards.length>0){
+                       pile_3.cards[(pile_3.cards.length)-1].active=true;
+                   }
+ 
                    break;
                 case 'pile_4':
                    card = pile_4.cards.pop();
+                   if(pile_4.cards.length>0){
+                       pile_4.cards[(pile_4.cards.length)-1].active=true;
+                   }
+ 
                    break;
                 case 'pile_5':
                    card = pile_5.cards.pop();
+                   if(pile_5.cards.length>0){
+                       pile_5.cards[(pile_5.cards.length)-1].active=true;
+                   }
+ 
                    break;
                 case 'pile_6':
                    card = pile_6.cards.pop();
+                   if(pile_6.cards.length>0){
+                       pile_6.cards[(pile_6.cards.length)-1].active=true;
+                   }
+ 
                    break;
                 case 'pile_7':
                    card = pile_7.cards.pop();
+                   if(pile_7.cards.length>0){
+                       pile_7.cards[(pile_7.cards.length)-1].active=true;
+                   } 
                    break;
             }
+            return card;
         }
     }    
 }
@@ -141,8 +205,6 @@ var pile_7_div = new Vue({
 
 
 
-
-
 var app1 = new Vue({
     el: '#app-1',
     data: obj,
@@ -170,19 +232,26 @@ var app1 = new Vue({
                 })
                 for(var i =0; i<=6; i++){
                     for(var j =i; j>=0; j--){
-                       app1.move_cards(i); 
+                       if(j==0){
+                           app1.move_cards(i, true); 
+                       }else{
+                           app1.move_cards(i, false); 
+                       }
                     }
                 }
             });
         },
         push_card(response, index){
              var card_info = response.data.cards[0];
-             var card = {index:response.data.remaining, code:card_info.code, img:card_info.image};
+             var card = {index:response.data.remaining, code:card_info.code, img:card_info.image, active:false};
              main_pile.cards.push(card);
              console.log(main_pile.cards);
         },
-        move_cards(pile_num){
+        move_cards(pile_num, is_active){
             var card = main_pile.cards.pop();
+            if(is_active){
+                card.active=true;
+            }
 
             switch(pile_num){
                 case 0:

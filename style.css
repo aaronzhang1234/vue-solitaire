@@ -2,15 +2,23 @@
     display:inline;
 }
 img{
-    height:8vh;
+    height:10vh;
     width:auto;
 }
 
 div#main_cards{
     display:inline-block;
 }
+div#playing_field{
+    height:70vh;
+    width:100vw;
+}
 div#playing_field>div{
-    margin: 0vw 3vw 0vw 3vw;
+    margin: 0vw 1vw 0vw 1vw;
     display:inline-block;
     vertical-align:top;
+}
+div.drop_zone{
+    height:20vh;
+    width:10vw;
 }

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1>Solitaire</h1>
+  <img src="securitypresentation.gif"></img>
+  <p>Staring off, we get the cards from the api</p>
+  <img src="getcardsvue.gif"></img>
+  <p>Let's make some holding pens for these cards</p>
+  <img src=getcards.gif></img>
+  <p>The cards need to go into their own little pens though and not all crowd in the main deck</p>
+  <img src="safe.gif"></img>
+  <p>Lets make it look a little more like solitiare</p>
+  <p>Alas, you cannot see the cards before you've used them, this is not solitaire! Fortunately for us, vue has easy html integration so one if statement later and...</p>
+  <img src="bowsette.gif"></img>
+  <p>Because it's 2018</p>
+  <p>Currently, the document is only checking to see if it is the last card to show it, but we'll get to that later. First we actually have to add the dreaded drag and drop. Which is probably going to be the hardest part of this entire project.</p>
+  <h2>4 Days of procrastination and hair pulling later....</h2>
+  <img src="place_card.gif"></img>
+  <p>We can now drag and drop the cards. As of now, this was actually one of the hardest things I've had to overcome in the creation of this app. So many different vue drag and drop add-ons and plug-ins have been killed and used by me. I've dabbled in vue-cli and npm but in the end, I only wanted to create a lightweight app and the simplest solution was just to use the HTML default drag and drop API along with Vue. This problem took me around 4 days to actually tackle.</p> 
+  <p> Smoke and mirrors though, this function only gets rid of a card in the first pile and places it in the second. It's what will impress the project managers though.</p>
+  <p> Now, this is the real shit.</p>
+  <img src="cardsmove.gif"></img>
+  <p> Unfortunately, the divs for dropping are reduced to nothing so you cannot drop a card into an empty div so lets just make the height a little higher in css</p>
+  <img src="buffoutthosescratches.gif"></img>
+  <p> Wew lad, the drop divs are a good size now, but the main div is lacking</p>
+  <img src="changingtheheight.gif"></img>
+  <p> Now we're gucci af.</p>
+  <h1> This is when I actually start actively making this page</h1>
+  <p> I guess now we actually have to focus on actually doing the active cards instead of cheesing it with the last element in the array, so lets get this. Just need to change an if statement right?</p>
+  <code>
+    <pre>
+      &lt;div  v-if="index==cards.length-1"&gt;
+        &lt;card-item  @dragstart.native = "on_drag_start" :card_img="card.img" :card_id="card.code"&gt;&lt;/card-item&gt;
+      &lt;/div&gt;
+      &lt;div v-else&gt; 
+        &lt;img draggable = "false" src="images/bowsette.jpg"&gt;&lt;/img&gt;
+      &lt;/div&gt;
+    </pre>
+  </code>
+  <p>to</p>
+  <code>
+    <pre>
+      &lt;div  v-if="card.active==true"&gt;
+        &lt;card-item  @dragstart.native = "on_drag_start" :card_img="card.img" :card_id="card.code"&gt;&lt;/card-item&gt;
+      &lt;/div&gt;
+      &lt;div v-else&gt; 
+        &lt;img draggable = "false" src="images/bowsette.jpg"&gt;&lt;/img&gt;
+      &lt;/div&gt;
+    </pre>
+  </code>
+  <p> Should work right? ...... r i g h t?</p>
+  <img src="thatworks.gif"></img>
+  <p> Well, it actually did work, I'm amazed</p>
+  <p> As you can see though, it doesn't actually reveal the card or makes them active so lets do that. Adding to our remove card from pile function making the last item in the array active.</p>
+  <code>
+    <pre>
+      if(pile_2.cards.length>0){
+        pile_2.cards[(pile_1.cards.length)-1].active=true;
+      }
+    </pre>
+  </code>
+  <p>Add this to our code and hopefully it works on pile 2</p>
+  <img src="showactive.gif"></img>
+  <p>Holy it does, today has been a world of wonder for me folks.<p>
+  <p>But, does it work for the other piles?</p>
+  <img src="revealall.gif"></img>
+  <p>Man, today has just been a great day for me, first try for everything, usually this doesn't happen</p>
+  <h1>Intermission</h1>
+  <p> Lemme take a break here to tell you about my environment for todays session. Starbucks with a cup of chai tea which I have refilled twice already with free hot water.</p>
+  <p> There is a girl right next to me making me nervous but I'll survive this for right now</p>
+  <p> Reading a quick book and I'll get back to it</p>
+</body>
