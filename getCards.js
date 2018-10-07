@@ -41,9 +41,12 @@ var diamond_pile = {
 var heart_pile = {
     cards:[]
 }
+function click_on(){
+    console.log('clicked');
+}
 Vue.component("card-item",{
-    props:['card_img'],
-    template:'<img :src="card_img"></img>'
+    props:['card_img', "card_id"],
+    template:'<img :src="card_img" :id="card_id"></img>'
 })
 
 var main_pile_div = new Vue({
@@ -51,33 +54,88 @@ var main_pile_div = new Vue({
    data: main_pile
 })
 
+var global_mixin={
+    methods:{
+        on_drag_start: function(e){
+            console.log('hello');
+            var card_id = e.srcElement.id;
+            e.dataTransfer.setData("card_id", card_id);
+            var from_pile = e.srcElement.parentElement.parentElement.parentElement.id;
+            e.dataTransfer.setData("from_pile", from_pile);
+        },   
+        drag_over:function(e){
+            e.preventDefault();
+        },
+        on_drop:function(e){
+            e.preventDefault();
+            console.log('bello');
+            console.log(e.dataTransfer.getData("card_id"));
+            console.log(e.dataTransfer.getData("from_pile"));
+            card = pile_1.cards.pop();
+            pile_2.cards.push(card);
+        }, 
+        get_card(){
+            var card;
+            switch(pile_name){
+                case 'pile_1':
+                   card = pile_1.cards.pop(); 
+                   break;
+                case 'pile_2':
+                   card = pile_2.cards.pop();
+                   break;
+                case 'pile_3':
+                   card = pile_3.cards.pop();
+                   break;
+                case 'pile_4':
+                   card = pile_4.cards.pop();
+                   break;
+                case 'pile_5':
+                   card = pile_5.cards.pop();
+                   break;
+                case 'pile_6':
+                   card = pile_6.cards.pop();
+                   break;
+                case 'pile_7':
+                   card = pile_7.cards.pop();
+                   break;
+            }
+        }
+    }    
+}
 var pile_1_div = new Vue({
     el: '#pile_1',
-    data: pile_1
+    data: pile_1,
+    mixins:[global_mixin]
 })
 var pile_2_div = new Vue({
     el: '#pile_2',
-    data: pile_2
+    data: pile_2,
+    mixins:[global_mixin]
 })
 var pile_3_div = new Vue({
     el: '#pile_3',
-    data: pile_3
+    data: pile_3,
+    mixins:[global_mixin]
 })
 var pile_4_div = new Vue({
     el: '#pile_4',
-    data: pile_4
+    data: pile_4,
+    mixins:[global_mixin]
 })
 var pile_5_div = new Vue({
     el: '#pile_5',
-    data: pile_5
+    data: pile_5,
+    mixins:[global_mixin]
 })
 var pile_6_div = new Vue({
     el: '#pile_6',
-    data: pile_6
+    data: pile_6,
+    mixins:[global_mixin]
 })
 var pile_7_div = new Vue({
     el: '#pile_7',
-    data: pile_7
+    data: pile_7,
+    mixins:[global_mixin]
 })
 
 
@@ -104,14 +162,6 @@ var app1 = new Vue({
             var promises = [];
             for(var i = 0; i<=51; i++){
                 promises.push(axios.get(base_url+this.deck_id+'/draw/'));
-                /*
-                axios
-                 .get(base_url+this.deck_id+'/draw/')
-                 .then(function(response){
-                     response.data.cards[0];
-                     app1.push_card(response, i);
-                 })
-                 */
             }
             axios.all(promises).then(function(results){
                 results.forEach(function(response){
