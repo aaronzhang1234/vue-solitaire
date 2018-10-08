@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<head>
-  <link rel="stylesheet" type="text/css" href="style.css">
+<head> <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
   <h1>Solitaire</h1>
@@ -71,4 +70,49 @@
   <p> Lemme take a break here to tell you about my environment for todays session. Starbucks with a cup of chai tea which I have refilled twice already with free hot water.</p>
   <p> There is a girl right next to me making me nervous but I'll survive this for right now</p>
   <p> Reading a quick book and I'll get back to it</p>
+  <h1>Back friends</h1>
+  <p>Now let's talk about the logic of solitiare here. A card can only be placed under a card if the number is one less and the color of the card is different. Thankfully, the card code already has the card value and the suit. So i've just gotta parse it.</p>
+  <p>Here's what we got for the card suit checker</p>
+  <code> 
+    <pre>
+       if((from_card_suit=="H" || from_card_suit=="D") && (to_card_suit=="C" || to_card_suit=="S")){
+           return true;
+       }else if((from_card_suit=="C" || from_card_suit=="S") && (to_card_suit=="H" || to_card_suit=="D")){
+           return true;
+       }else{
+           return false;
+       }
+       return false;
+    </pre>
+  </code>
+  <p> mmmmm, the smell of cheese fills the air along with the stench of brute force. I care about making my code look beautiful so I'll change this later</p>
+  <p> Now let's see what we got for our value checker</p>
+  <code>
+    <pre>
+       is_correct_value:function(to_card_value, from_card_value){
+            var code_to_value = new Map([
+                ['A' ,  1 ],
+                ['2' ,  2 ],
+                ['3' ,  3 ],
+                ['4' ,  4 ],
+                ['5' ,  5 ],
+                ['6' ,  6 ],
+                ['7' ,  7 ],
+                ['8' ,  8 ],
+                ['9' ,  9 ],
+                ['0' , 10 ],
+                ['J' , 11 ],
+                ['Q' , 12 ],
+                ['K' , 13 ]
+            ])
+            var to_card_num = code_to_value.get(to_card_value);
+            var from_card_num = code_to_value.get(from_card_value);
+            if(from_card_num == to_card_num-1){
+                return true;
+            }
+            return false;
+       }
+    </pre>
+  </code>
+  <p> Beautiful</p>
 </body>

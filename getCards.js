@@ -59,8 +59,6 @@ var global_mixin={
             e.dataTransfer.setData("card_id", card_id);
             var from_pile = e.srcElement.parentElement.parentElement.parentElement.parentElement.id;
             var bleh = e.srcElement.parentElement.parentElement.parentElement;
-            console.log(bleh);
-            console.log(from_pile);
             e.dataTransfer.setData("from_pile", from_pile);
         },   
         drag_over:function(e){
@@ -69,9 +67,15 @@ var global_mixin={
         on_drop:function(e){
             e.preventDefault();
             var from_pile = e.dataTransfer.getData("from_pile");
-            var card_code = e.dataTransfer.getData("card_id");
+            var from_card_code = e.dataTransfer.getData("card_id");
             var to_pile = this.get_pile_name(e.toElement);
-            this.add_card(to_pile, from_pile);
+            var to_card_code = this.get_last_code(to_pile); 
+            console.log(to_card_code);
+            console.log(from_card_code);
+            var correct_logic = this.is_correct_logic(to_card_code, from_card_code);
+            if(correct_logic){
+                this.add_card(to_pile, from_pile);
+            }
         }, 
         get_pile_name:function(element){
             while(element){ 
@@ -82,11 +86,94 @@ var global_mixin={
             }
             return element.id;
         },
+        get_last_code:function(pile_name){
+            switch(pile_name){
+                case 'pile_1':
+                   if(pile_1.cards.length>0){
+                       return pile_1.cards[(pile_1.cards.length)-1].code;
+                   } 
+                   break;
+                case 'pile_2':
+                   if(pile_2.cards.length>0){
+                       return pile_2.cards[(pile_2.cards.length)-1].code;
+                   }
+                   break;
+                case 'pile_3':
+                   if(pile_3.cards.length>0){
+                       return pile_3.cards[(pile_3.cards.length)-1].code;
+                   } 
+                   break;
+                case 'pile_4':
+                   if(pile_4.cards.length>0){
+                       return pile_4.cards[(pile_4.cards.length)-1].code;
+                   }
+ 
+                   break;
+                case 'pile_5':
+                   if(pile_5.cards.length>0){
+                       return pile_5.cards[(pile_5.cards.length)-1].code;
+                   }
+ 
+                   break;
+                case 'pile_6':
+                   if(pile_6.cards.length>0){
+                       return pile_6.cards[(pile_6.cards.length)-1].code;
+                   } 
+                   break;
+                case 'pile_7':
+                   if(pile_7.cards.length>0){
+                       return pile_7.cards[(pile_7.cards.length)-1].code;
+                   } 
+                   break;
+            }
+        },
+        is_correct_logic:function(to_card_code, from_card_code){
+            to_card_suit = to_card_code[1];
+            from_card_suit = from_card_code[1];
+            to_card_value = to_card_code[0];
+            from_card_value = from_card_code[0];
+            var is_correct_suits =  this.is_correct_suit(to_card_suit, from_card_suit);
+            var is_correct_values = this.is_correct_value(to_card_value, from_card_value);
+            if(is_correct_suits && is_correct_values){
+                return true; 
+            }
+            return false;
+        },
+        is_correct_suit:function(to_card_suit, from_card_suit){
+            if((from_card_suit=="H" || from_card_suit=="D") && (to_card_suit=="C" || to_card_suit=="S")){
+                return true;
+            }else if((from_card_suit=="C" || from_card_suit=="S") && (to_card_suit=="H" || to_card_suit=="D")){
+                return true;
+            }else{
+                return false;
+            }
+            return false;
+        },
+        is_correct_value:function(to_card_value, from_card_value){
+            var code_to_value = new Map([
+                ['A' ,  1 ],
+                ['2' ,  2 ],
+                ['3' ,  3 ],
+                ['4' ,  4 ],
+                ['5' ,  5 ],
+                ['6' ,  6 ],
+                ['7' ,  7 ],
+                ['8' ,  8 ],
+                ['9' ,  9 ],
+                ['0' , 10 ],
+                ['J' , 11 ],
+                ['Q' , 12 ],
+                ['K' , 13 ]
+            ])
+            var to_card_num = code_to_value.get(to_card_value);
+            var from_card_num = code_to_value.get(from_card_value);
+            if(from_card_num == to_card_num-1){
+                return true;
+            }
+            return false;
+        },
         add_card:function(pile_name_to, pile_name_from){
-            console.log(pile_name_to);
-            console.log(pile_name_from);
             var card_to_add = this.get_card(pile_name_from)
-            console.log(card_to_add);            
             switch(pile_name_to){
                 case 'pile_1':
                    pile_1.cards.push(card_to_add); 
