@@ -127,7 +127,9 @@
     <div id="finished_piles">      
       <div @dragover="drag_over" @drop="on_drop" id= "pile_spade">
         <h1>Spades</h1>
-        <div  class="empty_deck" draggable= "false" v-if="(cards.length<=0)"> 
+        <div v-if="(cards.length<=0)">
+          <div  class="empty_deck" draggable= "false"> 
+          </div>
         </div>
         <div v-else>
           <card-item  @dragstart.native = "on_drag_start" :card_img="cards[cards.length-1].img" :card_id="cards[cards.length-1].code"></card-item>
@@ -135,7 +137,9 @@
       </div>
       <div @dragover="drag_over" @drop="on_drop" id= "pile_club">
         <h1>Clubs</h1>
-        <div  class="empty_deck" draggable= "false" v-if="(cards.length<=0)"> 
+        <div v-if="(cards.length<=0)">
+          <div  class="empty_deck" draggable= "false"> 
+          </div>
         </div>
         <div v-else>
           <card-item  @dragstart.native = "on_drag_start" :card_img="cards[cards.length-1].img" :card_id="cards[cards.length-1].code"></card-item>
@@ -143,7 +147,9 @@
       </div>
       <div @dragover="drag_over" @drop="on_drop" id= "pile_diamond">
         <h1>Diamonds</h1>
-        <div  class="empty_deck" draggable= "false" v-if="(cards.length<=0)"> 
+        <div v-if="(cards.length<=0)">
+          <div  class="empty_deck" draggable= "false"> 
+          </div>
         </div>
         <div v-else>
           <card-item  @dragstart.native = "on_drag_start" :card_img="cards[cards.length-1].img" :card_id="cards[cards.length-1].code"></card-item>
@@ -151,7 +157,9 @@
       </div>
       <div @dragover="drag_over" @drop="on_drop" id= "pile_heart">
         <h1>Hearts</h1>
-        <div  class="empty_deck" draggable= "false" v-if="(cards.length<=0)"> 
+        <div v-if="(cards.length<=0)">
+          <div  class="empty_deck" draggable= "false"> 
+          </div>
         </div>
         <div v-else>
           <card-item  @dragstart.native = "on_drag_start" :card_img="cards[cards.length-1].img" :card_id="cards[cards.length-1].code"></card-item>
