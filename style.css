@@ -1,8 +1,16 @@
-#finished_piles>div{
-    display:inline-block;
-    margin: 0vw 1vw 0vw 1vw;
+#finished_piles{
+    float:right;
+    width:auto;
+}
+#app-1{
+    float:right;
 }
 #finished_piles>div>div{
+    text-align:center;
+}
+#finished_piles>div>h1{
+    margin:0 0 0 0;
+    font-size:4vw;
     text-align:center;
 }
 img{
@@ -15,8 +23,9 @@ img{
   background-color:black;
 }
 div#playing_field{
+    float:left;
     height:70vh;
-    width:100vw;
+    width:90vw;
 }
 div#main_pile>div{
     display:inline-block;
