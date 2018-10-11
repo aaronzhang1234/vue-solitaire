@@ -13,21 +13,18 @@
     <h1 id = "title">Deck of Cards</h1>
     <div id='main_pile'>
       <h1>Main Pile</h1>
-      <div id="main_cards" v-for="(card,index) in cards">
-        <div v-if="index == cards.length-1">
-          <card-item :card_img="card.img" :card_id="card.code"></card-item>
-        </div>
-        <div v-else>
-          <img draggable = "false" src="images/bowsette.jpg"></img>
+      <div id="main_cards" v-if="(cards.length)>0">
+        <img v-on:click="on_click" draggable = "false" src="images/bowsette.jpg"></img>
+      </div>
+      <div id="empty_deck" v-else>
+        <div class="empty_deck" v-on:click="on_click" draggable= "false"> 
         </div>
       </div>
-    </div>
-    <h1>Holding Pile</h1>
-    <div id='holding_pile'>
-    </div>
-
+      <div id="playable_cards" v-if="(playable_cards.length>=1)">
+        <card-item  @dragstart.native = "on_drag_start" :card_img="playable_cards[playable_cards.length-1].img" :card_id="playable_cards[playable_cards.length-1].code"></card-item>
+      </div>
+    </div> 
     <div id="playing_field">
-
       <div id="pile_1">
         <div class="drop_zone" @dragover="drag_over" @drop="on_drop">
           <h1>Pile 1</h1>
@@ -127,23 +124,46 @@
       </div>
     </div>
 
-    <div id="finished_piles">
-      <h1>Spades</h1>
-      <div id= "spade_pile">
+    <div id="finished_piles">      
+      <div @dragover="drag_over" @drop="on_drop" id= "pile_spade">
+        <h1>Spades</h1>
+        <div  class="empty_deck" draggable= "false" v-if="(cards.length<=0)"> 
+        </div>
+        <div v-else>
+          <card-item  @dragstart.native = "on_drag_start" :card_img="cards[cards.length-1].img" :card_id="cards[cards.length-1].code"></card-item>
+        </div>
       </div>
-      <h1>Clubs</h1>
-      <div id= "club_pile">
+      <div @dragover="drag_over" @drop="on_drop" id= "pile_club">
+        <h1>Clubs</h1>
+        <div  class="empty_deck" draggable= "false" v-if="(cards.length<=0)"> 
+        </div>
+        <div v-else>
+          <card-item  @dragstart.native = "on_drag_start" :card_img="cards[cards.length-1].img" :card_id="cards[cards.length-1].code"></card-item>
+        </div>
       </div>
-      <h1>Diamonds</h1>
-      <div id= "diamond_pile">
+      <div @dragover="drag_over" @drop="on_drop" id= "pile_diamond">
+        <h1>Diamonds</h1>
+        <div  class="empty_deck" draggable= "false" v-if="(cards.length<=0)"> 
+        </div>
+        <div v-else>
+          <card-item  @dragstart.native = "on_drag_start" :card_img="cards[cards.length-1].img" :card_id="cards[cards.length-1].code"></card-item>
+        </div>
       </div>
-      <h1>Hearts</h1>
-      <div id= "heart_pile">
+      <div @dragover="drag_over" @drop="on_drop" id= "pile_heart">
+        <h1>Hearts</h1>
+        <div  class="empty_deck" draggable= "false" v-if="(cards.length<=0)"> 
+        </div>
+        <div v-else>
+          <card-item  @dragstart.native = "on_drag_start" :card_img="cards[cards.length-1].img" :card_id="cards[cards.length-1].code"></card-item>
+        </div>
       </div>
     </div>
     <div id='app-1'> 
       <p>{{deck_id}}</p>
       <button v-on:click="get_deck">Click for Cards</button>
     </div>
-    <script src="getCards.js"></script>
+    <script src="javascript/mixins.js"></script>
+    <script src="javascript/finished_mixin.js"></script>
+    <script src="javascript/dragging_mixin.js"></script>
+    <script src="javascript/getCards.js"></script>
 </body>

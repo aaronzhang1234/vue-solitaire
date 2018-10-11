@@ -10,6 +10,15 @@
   <img src=getcards.gif></img>
   <p>The cards need to go into their own little pens though and not all crowd in the main deck</p>
   <img src="safe.gif"></img>
+  <p>The cards are their own object in javascript, as of now the structure is</p>
+  <pre>
+    object card ={
+        id(Not much use for this one),
+        code(which is the suit and value),
+        img(the api which I use have preset images of the card front),
+        is_active(This tells whether a card should be face up or face down)
+    }
+  </pre>
   <p>Lets make it look a little more like solitiare</p>
   <p>Alas, you cannot see the cards before you've used them, this is not solitaire! Fortunately for us, vue has easy html integration so one if statement later and...</p>
   <img src="bowsette.gif"></img>
@@ -115,4 +124,26 @@
     </pre>
   </code>
   <p> Beautiful</p>
+  <p> Let's see it all in action now</p>
+  <img src="logiced.gif"></img>
+  <p> Fantastical</p>
+  <p> Two roads diverged in a path, there stands ahead of us</p>
+  <ol>
+    <li>I can either work on the design of the entire solitaire game, making it look good af</li>
+    <li>Or, I can work on getting the solitaire thing to actually work</li>
+  </ol>
+  <p>Let's flip a coin tails for design and heads for technical stuff</p>
+  <img src="flip.gif"></img>
+  <p>The gods have spoken, lets use that technical noggin</p>
+  <p>First off, lets fix the top card thing since it'll be more like solitaire then.</p>
+  <p>From this</p>
+  <img src="fromthis.png"></img>
+  <p>To this</p>
+  <img src="clickforcards.gif"></img>
+  <p>But wait, dragging cards still doesn't work</p>
+  <img src="dragcardsfrommainpile.gif"></img>
+  <p>Much better, we're actually looking like a solitaire game now, something that I could play for hours!</p>
+  <p>As you've seen from the last slide, I got a little ahead of myself in this documentation and started work on the finished piles now.</p>
+  <img src="finishedpiles.png"></img>
+  <p>Not much for now, but we can actually drag the cards</p>
 </body>

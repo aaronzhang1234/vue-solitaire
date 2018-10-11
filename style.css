@@ -1,17 +1,25 @@
-#finished_piles{
-    display:inline;
+#finished_piles>div{
+    display:inline-block;
+    margin: 0vw 1vw 0vw 1vw;
+}
+#finished_piles>div>div{
+    text-align:center;
 }
 img{
     height:10vh;
     width:auto;
 }
-
-div#main_cards{
-    display:inline-block;
+.empty_deck{    
+  height:10vh;
+  width:5vw;
+  background-color:black;
 }
 div#playing_field{
     height:70vh;
     width:100vw;
+}
+div#main_pile>div{
+    display:inline-block;
 }
 div#playing_field>div{
     margin: 0vw 1vw 0vw 1vw;
