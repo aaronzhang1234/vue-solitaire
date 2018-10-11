@@ -11,9 +11,8 @@ var finished_mixins = {
             var to_card_code = this.get_last_code(to_pile); 
             console.log(from_pile + " " + from_card_code);
             console.log(to_pile + " "+to_card_code);
-            if(this.logic_is_correct(to_card_code, from_card_code)){
+            if(this.logic_is_correct(to_card_code, from_card_code) && this.is_single_card(from_pile, from_card_code)){
                 this.add_card(to_pile, from_pile);
-                console.log("winnerwinnerchickendinner");
             }
         },
         get_pile_name:function(element){
@@ -79,9 +78,7 @@ var finished_mixins = {
                 ['2' ,  2 ],
                 ['3' ,  3 ],
                 ['4' ,  4 ],
-                ['5' ,  5 ],
-                ['6' ,  6 ],
-                ['7' ,  7 ],
+                ['5' ,  5 ], ['6' ,  6 ], ['7' ,  7 ],
                 ['8' ,  8 ],
                 ['9' ,  9 ],
                 ['0' , 10 ],
@@ -135,7 +132,7 @@ var finished_mixins = {
                 case 'pile_2':
                    card = pile_2.cards.pop();
                    if(pile_2.cards.length>0){
-                       pile_2.cards[(pile_1.cards.length)-1].active=true;
+                       pile_2.cards[(pile_2.cards.length)-1].active=true;
                    }
                    break;
                 case 'pile_3':
@@ -174,7 +171,77 @@ var finished_mixins = {
                    break;
             }
             return card;
-        }
+        },
+        is_single_card:function(pile_name, from_card_code){
+            switch(pile_name){
+                case 'playable_cards':
+                    return true;
+                case 'pile_1':
+                    for(var i=0; i<pile_1.cards.length;i++){
+                        if(pile_1.cards[i].code == from_card_code && i!=pile_1.cards.length-1){
+                            return false;
+                        }else if(pile_1.cards[i].code == from_card_code && i==pile_1.cards.length-1){
+                            return true;
+                        }
+                    }
+                    break;
+                case 'pile_2':
+                    for(var i=0; i<pile_2.cards.length;i++){
+                        if(pile_2.cards[i].code == from_card_code && i!=pile_2.cards.length-1){
+                            return false;
+                        }else if(pile_2.cards[i].code == from_card_code && i==pile_2.cards.length-1){
+                            return true;
+                        }
+                    }
+                    break;
+                case 'pile_3':
+                    for(var i=0; i<pile_3.cards.length;i++){
+                        if(pile_3.cards[i].code == from_card_code && i!=pile_3.cards.length-1){
+                            return false;
+                        }else if(pile_3.cards[i].code == from_card_code && i==pile_3.cards.length-1){
+                            return true;
+                        }
+                    }
+                    break;
+                case 'pile_4':
+                    for(var i=0; i<pile_4.cards.length;i++){
+                        if(pile_4.cards[i].code == from_card_code && i!=pile_4.cards.length-1){
+                            return false;
+                        }else if(pile_4.cards[i].code == from_card_code && i==pile_4.cards.length-1){
+                            return true;
+                        }
+                    }
+                    break;
+                case 'pile_5':
+                    for(var i=0; i<pile_5.cards.length;i++){
+                        if(pile_5.cards[i].code == from_card_code && i!=pile_5.cards.length-1){
+                            return false;
+                        }else if(pile_5.cards[i].code == from_card_code && i==pile_5.cards.length-1){
+                            return true;
+                        }
+                    }
+                    break;
+                case 'pile_6':
+                    for(var i=0; i<pile_6.cards.length;i++){
+                        if(pile_6.cards[i].code == from_card_code && i!=pile_6.cards.length-1){
+                            return false;
+                        }else if(pile_6.cards[i].code == from_card_code && i==pile_6.cards.length-1){
+                            return true;
+                        }
+                    }
+                    break;
+                case 'pile_7':
+                    for(var i=0; i<pile_7.cards.length;i++){
+                        if(pile_7.cards[i].code == from_card_code && i!=pile_7.cards.length-1){
+                            return false;
+                        }else if(pile_7.cards[i].code == from_card_code && i==pile_7.cards.length-1){
+                            return true;
+                        }
+                    }
+                    break;
+            }
+            return false;
 
+        }
     }
 }

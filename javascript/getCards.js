@@ -145,7 +145,6 @@ var app1 = new Vue({
             }
             axios.all(promises).then(function(results){
                 results.forEach(function(response){
-                    console.log(response);
                     app1.push_card(response);
                 })
                 for(var i =0; i<=6; i++){
@@ -166,7 +165,6 @@ var app1 = new Vue({
              var card_info = response.data.cards[0];
              var card = {index:response.data.remaining, code:card_info.code, img:card_info.image, active:false};
              main_pile.cards.push(card);
-             console.log(main_pile.cards);
         },
         move_cards(pile_num, is_active){
             var card = main_pile.cards.pop();
