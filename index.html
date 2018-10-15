@@ -31,7 +31,7 @@
               <card-item  @dragstart.native = "on_drag_start" :card_img="card.img" :card_id="card.code"></card-item>
             </div>
             <div v-else> 
-              <img draggable = "false" src="images/bowsette.jpg"></img>
+              <img draggable="false" src="images/bowsette.jpg"></img>
             </div>
           </div>
         </div>
@@ -112,10 +112,10 @@
           <h1>Pile 7</h1>
           <div  v-for="(card, index) in cards">
             <div  v-if="card.active==true">
-              <card-item  @dragstart.native = "on_drag_start" :card_img="card.img" :card_id="card.code"></card-item>
+              <card-item vue-bind:style="{z-index:index}" @dragstart.native = "on_drag_start" :card_img="card.img" :card_id="card.code"></card-item>
             </div>
             <div v-else> 
-              <img draggable = "false" src="images/bowsette.jpg"></img>
+              <img vue-bind:style="{z-index:index}" draggable = "false" src="images/bowsette.jpg"></img>
             </div>
           </div>
         </div>

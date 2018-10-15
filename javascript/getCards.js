@@ -3,8 +3,7 @@ deck_id = '';
 var obj = {
     deck_id: ''
 } 
-var main_pile = {
-    cards:[],
+var main_pile = { cards:[],
     playable_cards:[]
 }
 var pile_1 = {

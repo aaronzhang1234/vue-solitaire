@@ -1,3 +1,7 @@
+h1#title{
+    text-align:center;
+    font-size:4vw;
+}
 #finished_piles{
     float:right;
     width:auto;
@@ -31,9 +35,22 @@ div#main_pile>div{
     display:inline-block;
 }
 div#playing_field>div{
+    width:auto;
     margin: 0vw 1vw 0vw 1vw;
     display:inline-block;
     vertical-align:top;
+}
+div#playing_field>div>div>h1{
+    margin-bottom:7vh;
+    text-align:center;
+}
+div#playing_field>div>div>div{
+    margin-top:-7vh;
+    text-align:center;
+    position:relative;
+}
+div#playing_field>div>div>div>img{
+    text-align:center;
 }
 div.drop_zone{
     height:20vh;
