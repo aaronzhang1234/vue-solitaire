@@ -15,8 +15,7 @@
         <img v-on:click="on_click" draggable = "false" src="images/bowsette.jpg"></img>
       </div>
       <div id="empty_deck" v-else>
-        <div class="empty_deck" v-on:click="on_click" draggable= "false"> 
-        </div>
+        <img draggable = "false" v-on:click="on_click" src="images/bowsette.jpg"></img>
       </div>
       <div id="playable_cards" v-if="(playable_cards.length>=1)">
         <card-item  @dragstart.native = "on_drag_start" :card_img="playable_cards[playable_cards.length-1].img" :card_id="playable_cards[playable_cards.length-1].code"></card-item>
@@ -27,7 +26,7 @@
         <div class="drop_zone" @dragover="drag_over" @drop="on_drop">
           <h1>pile 1</h1>
           <div v-for="(card, index) in cards">
-            <div  v-if="card.active==true">
+            <div v-if="card.active==true">
               <card-item  @dragstart.native = "on_drag_start" :card_img="card.img" :card_id="card.code"></card-item>
             </div>
             <div v-else> 
@@ -123,47 +122,48 @@
     </div>
 
     <div id="finished_piles">      
-      <div @dragover="drag_over" @drop="on_drop" id= "pile_spade">
-        <h1>♠︎</h1>
-        <div v-if="(cards.length<=0)">
-          <div  class="empty_deck" draggable= "false"> 
+      <div>
+        <div @dragover="drag_over" @drop="on_drop" id= "pile_spade">
+          <h1>♠︎</h1>
+          <div v-if="(cards.length<=0)">
+            <img draggable = "false" src="images/bowsette.jpg"></img>
+          </div>
+          <div v-else>
+            <card-item  @dragstart.native = "on_drag_start" :card_img="cards[cards.length-1].img" :card_id="cards[cards.length-1].code"></card-item>
           </div>
         </div>
-        <div v-else>
-          <card-item  @dragstart.native = "on_drag_start" :card_img="cards[cards.length-1].img" :card_id="cards[cards.length-1].code"></card-item>
+        <div @dragover="drag_over" @drop="on_drop" id= "pile_club">
+          <h1>♣︎</h1>
+          <div v-if="(cards.length<=0)">
+            <img draggable = "false" src="images/bowsette.jpg"></img>
+          </div>
+          <div v-else>
+            <card-item  @dragstart.native = "on_drag_start" :card_img="cards[cards.length-1].img" :card_id="cards[cards.length-1].code"></card-item>
+          </div>
         </div>
       </div>
-      <div @dragover="drag_over" @drop="on_drop" id= "pile_club">
-        <h1>♣︎</h1>
-        <div v-if="(cards.length<=0)">
-          <div  class="empty_deck" draggable= "false"> 
+      <div>
+        <div @dragover="drag_over" @drop="on_drop" id= "pile_diamond">
+          <h1>♦︎</h1>
+          <div v-if="(cards.length<=0)">
+            <img draggable = "false" src="images/bowsette.jpg"></img>
+          </div>
+          <div v-else>
+            <card-item  @dragstart.native = "on_drag_start" :card_img="cards[cards.length-1].img" :card_id="cards[cards.length-1].code"></card-item>
           </div>
         </div>
-        <div v-else>
-          <card-item  @dragstart.native = "on_drag_start" :card_img="cards[cards.length-1].img" :card_id="cards[cards.length-1].code"></card-item>
-        </div>
-      </div>
-      <div @dragover="drag_over" @drop="on_drop" id= "pile_diamond">
-        <h1>♦︎</h1>
-        <div v-if="(cards.length<=0)">
-          <div  class="empty_deck" draggable= "false"> 
+        <div @dragover="drag_over" @drop="on_drop" id= "pile_heart">
+          <h1>♥︎</h1>
+          <div v-if="(cards.length<=0)">
+            <img draggable = "false" src="images/bowsette.jpg"></img>
           </div>
-        </div>
-        <div v-else>
-          <card-item  @dragstart.native = "on_drag_start" :card_img="cards[cards.length-1].img" :card_id="cards[cards.length-1].code"></card-item>
-        </div>
-      </div>
-      <div @dragover="drag_over" @drop="on_drop" id= "pile_heart">
-        <h1>♥︎</h1>
-        <div v-if="(cards.length<=0)">
-          <div  class="empty_deck" draggable= "false"> 
+          <div v-else>
+            <card-item  @dragstart.native = "on_drag_start" :card_img="cards[cards.length-1].img" :card_id="cards[cards.length-1].code"></card-item>
           </div>
-        </div>
-        <div v-else>
-          <card-item  @dragstart.native = "on_drag_start" :card_img="cards[cards.length-1].img" :card_id="cards[cards.length-1].code"></card-item>
         </div>
       </div>
     </div>
+
     <div id='app-1'> 
       <p>{{deck_id}}</p>
       <button v-on:click="get_deck">Click for Cards</button>

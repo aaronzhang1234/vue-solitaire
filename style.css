@@ -1,38 +1,56 @@
+body{
+    text-align:center;
+}
+
 h1#title{
     text-align:center;
     font-size:4vw;
 }
-#finished_piles{
-    float:right;
-    width:auto;
-}
 #app-1{
-    float:right;
+    clear:both;
 }
-#finished_piles>div>div{
+#finished_piles{
+    vertical-align:top;
+    text-align:center;
+    display:inline-block;
+    width:20vw;
+}
+#finished_piles>div{
+    width:auto;
+    display:inline-block;
+    margin: 0vw 1vw 0vw 1vw;
+}
+#finished_piles>div>div>div{
     text-align:center;
 }
-#finished_piles>div>h1{
+#finished_piles>div>div>h1{
     margin:0 0 0 0;
     font-size:4vw;
     text-align:center;
 }
 img{
-    height:10vh;
-    width:auto;
+    width:5vw;
+    height:auto; 
 }
-.empty_deck{    
-  height:10vh;
-  width:5vw;
-  background-color:black;
+.empty_deck{      
+    width:5vw;
+    height:10vw;
+    background-color:black;
 }
 div#playing_field{
-    float:left;
-    height:70vh;
-    width:90vw;
+    vertical-align:top;
+    display:inline-block;
+    text-align:center;
+    height:80vh;
+    width:60vw;
+}
+div#main_pile{
+    vertical-align:top;
+    text-align:center;
+    display:inline-block;
+     width:15vw;
 }
 div#main_pile>div{
-    display:inline-block;
 }
 div#playing_field>div{
     width:auto;
@@ -54,5 +72,5 @@ div#playing_field>div>div>div>img{
 }
 div.drop_zone{
     height:20vh;
-    width:10vw;
+    width:5vw;
 }

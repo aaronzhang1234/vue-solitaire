@@ -2,3 +2,9 @@ img{
     height:30vh;
     width:auto;
 }
+img, ul, h1, h2 ,p{
+    text-align:center;
+    display:block;
+    margin:auto;
+}
+

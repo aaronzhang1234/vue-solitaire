@@ -97,6 +97,15 @@ var pile_6_div = new Vue({
 var pile_7_div = new Vue({
     el: '#pile_7',
     data: pile_7,
+    computed:{
+        card_margin(){
+            if(this.cards.length>7){
+                return 7+(.25*(7-this.cards.length));
+            }else{
+                return 7;
+            }
+        }
+    },
     mixins:[playing_field_mixin,dragging_mixin]
 })
 
