@@ -1,5 +1,9 @@
 body{
+    background-color:#6B8E23;
     text-align:center;
+    margin:0;
+    height:100%;
+    overflow:hidden;
 }
 
 h1#title{
@@ -25,7 +29,7 @@ h1#title{
 }
 #finished_piles>div>div>h1{
     margin:0 0 0 0;
-    font-size:4vw;
+    font-size:6vh;
     text-align:center;
 }
 img{
@@ -41,14 +45,14 @@ div#playing_field{
     vertical-align:top;
     display:inline-block;
     text-align:center;
-    height:80vh;
+    height:70vh;
     width:60vw;
 }
 div#main_pile{
     vertical-align:top;
     text-align:center;
     display:inline-block;
-     width:15vw;
+    width:15vw;
 }
 div#main_pile>div{
 }
@@ -59,11 +63,10 @@ div#playing_field>div{
     vertical-align:top;
 }
 div#playing_field>div>div>h1{
-    margin-bottom:7vh;
+    margin-bottom:4vh;
     text-align:center;
 }
 div#playing_field>div>div>div{
-    margin-top:-7vh;
     text-align:center;
     position:relative;
 }
@@ -71,6 +74,6 @@ div#playing_field>div>div>div>img{
     text-align:center;
 }
 div.drop_zone{
-    height:20vh;
+    height:40vh;
     width:5vw;
 }

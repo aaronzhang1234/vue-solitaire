@@ -1,4 +1,16 @@
 var playing_field_mixin={
+    computed:{
+        card_margin:function(){
+            if(this.cards == null || this.cards.length<=7){
+                return -7;
+            }else{
+                return -(7+(.5*(this.cards.length-7)));
+            }
+        },
+        h1_margin:function(){
+            return -(this.card_margin);
+        }
+    }, 
     methods:{
         drag_over:function(e){
             e.preventDefault();
