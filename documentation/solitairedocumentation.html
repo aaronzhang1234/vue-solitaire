@@ -3,13 +3,12 @@
 </head>
 <body>
   <h1>Solitaire</h1>
-  <img src="securitypresentation.gif"></img>
+  <img src="firsttry.gif"></img>
   <p>Staring off, we get the cards from the api</p>
   <img src="getcardsvue.gif"></img>
   <p>Let's make some holding pens for these cards</p>
   <img src=getcards.gif></img>
   <p>The cards need to go into their own little pens though and not all crowd in the main deck</p>
-  <img src="safe.gif"></img>
   <p>The cards are their own object in javascript, as of now the structure is</p>
   <pre>
     object card ={
@@ -145,8 +144,6 @@
   <img src="dragcardsfrommainpile.gif"></img>
   <p>Much better, we're actually looking like a solitaire game now, something that I could play for hours!</p>
   <p>As you've seen from the last slide, I got a little ahead of myself in this documentation and started work on the finished piles now.</p>
-  <img src="finishedpiles.png"></img>
-  <p>Not much for now, but we can actually drag the cards</p>
   <img src="movetofinished.gif"></img>
   <p>With a snap of our hands, and working until 1:30A.M. we have finished the finished cards pile. Our solitaire game is looking to be quite the good stuff here</p>
   <img src="kingplace.gif"></img>
@@ -157,9 +154,8 @@
   <p>Ladies and Gentlemen, we got him</p>
   <h1>Solitaire is officially done, we have made a simmple game</h1>
   <p>Now for a quick design fix, first we'll try to move the finished piles to the side of the screen</p>
-  <img src="beautiful.png"></img>
-  <p>May, I call for a time of silence, this is the best day of my life.</p>
   <img src="completegame.gif"></img>
+  <p>May, I call for a time of silence, this is the best day of my life.</p>
   <p>But, something feels so empty inside, being a god at solitaire isn't an easy job so I've gotta shake things up. I'll start on getting the cards to actually overlap like regular cards do. Hopefully changing the z-index and adding some relative css will help</p>
   <img src="actuallylikecardsnow.gif"></p>
   <p>A slight of the hand, like a magician pulling a wonderful trick. How you might ask? Elementary my dear watson. Simply make every card have a top margin of a negative number and the title have a bottom margin of a higher number</p>
@@ -169,4 +165,12 @@
   <p>But, the margin thing is just a temporary bandage, what happens if we overflow?</p>
   <img src="overflow.gif"></img>
   <p>Egads, that's not very cash money</p>
+  <img src="cashmoney.gif"></img>
+  <p>Using the power of javascript in order to dynamically make the cards fit? Now that's pretty cash money</p>
+  <p>Oh, I seem to have shown something else I wasn't supposed to but the background is green now, all the other cool solitaire games do that</p>
+  <p>It's not very intuitive to have someone press a button to get cards and show the empty board. It also can result in situations like this</p>
+  <img src="thefollyofman.gif"></img>
+  <p>Lets add some more functionality</p>
+  <video autoplay src="StartAndRestart.mp4"></video>
+  <p>As I was working on this solitiare game, the new Mac Mojave came out along with a very very nice capture feature. Actually saves it in a compact and smooth MP4 instead of a gif</p>
 </body>

@@ -1,4 +1,4 @@
-var finished_mixins = {
+var finished_mixin = {
     methods:{
         drag_over:function(e){
             e.preventDefault();

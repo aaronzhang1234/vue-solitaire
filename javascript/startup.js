@@ -1,13 +1,13 @@
 var startup_mixin = {
     methods:{
         get_deck(){
-            axios
+            obj.show_click_cards = false;
+            obj.show_loading = true;
+             axios
              .get(base_url+'new/shuffle/')
              .then(function(response){
-                console.log('hello');
-                console.log(response);
                 obj.deck_id = response.data.deck_id;
-                app1.place_cards_in_main();
+                start_game.place_cards_in_main();
              });
 
         },
@@ -18,20 +18,25 @@ var startup_mixin = {
             }
             axios.all(promises).then(function(results){
                 results.forEach(function(response){
-                    app1.push_card(response);
+                    start_game.push_card(response);
                 })
                 for(var i =0; i<=6; i++){
                     for(var j =i; j>=0; j--){
                        if(j==0){
-                           app1.move_cards(i, true); 
+                           start_game.move_cards(i, true); 
                        }else{
-                           app1.move_cards(i, false); 
+                           start_game.move_cards(i, false); 
                        }
                     }
                 }
                 for(var i =0; i<main_pile.cards.length; i++){
                     main_pile.cards[i].active=true;
                 }
+                console.log("game startu");
+                document.getElementById("start_screen").style.display="none";
+                document.getElementById("game_on").style.display="";
+                obj.show_click_cards = true;
+                obj.show_loading = false;
             });
         },
         push_card(response, index){

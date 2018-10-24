@@ -1,9 +1,13 @@
 base_url = "https://deckofcardsapi.com/api/deck/";
 deck_id = '';
 var obj = {
-    deck_id: ''
+    deck_id: '',
+    before_game:true,
+    show_click_cards:true,
+    show_loading: false
 } 
-var main_pile = { cards:[],
+var main_pile = { 
+    cards:[],
     playable_cards:[]
 }
 var pile_1 = {
@@ -104,26 +108,29 @@ var pile_7_div = new Vue({
 var spade_div = new Vue({
     el: '#pile_spade',
     data: pile_spade,
-    mixins:[finished_mixins,dragging_mixin]
+    mixins:[finished_mixin,dragging_mixin]
 })
 var club_div = new Vue({
     el: '#pile_club',
     data: pile_club,
-    mixins:[finished_mixins,dragging_mixin]
+    mixins:[finished_mixin,dragging_mixin]
 })
 var diamond_div = new Vue({
     el: '#pile_diamond',
     data: pile_diamond,
-    mixins:[finished_mixins,dragging_mixin]
+    mixins:[finished_mixin,dragging_mixin]
 })
 var heart_div = new Vue({
     el: '#pile_heart',
     data: pile_heart,
-    mixins:[finished_mixins,dragging_mixin]
+    mixins:[finished_mixin,dragging_mixin]
 })
-
-var app1 = new Vue({
-    el: '#app-1',
+var restart = new Vue({
+    el: '#restart',
+    mixins:[restart_mixin]
+})
+var start_game = new Vue({
+    el: '#start_screen',
     data: obj,
     mixins:[startup_mixin]
 })

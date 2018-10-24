@@ -1,10 +1,13 @@
-img{
+img,video{
     height:30vh;
     width:auto;
 }
-img, ul, h1, h2 ,p{
+img, ul, h1, h2 ,p,video{
     text-align:center;
     display:block;
     margin:auto;
+}
+body{
+    background-color:#696969;
 }
 
