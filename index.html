@@ -16,9 +16,7 @@
       </div>
     </div>
     <div id="game_on" style="display:none">
-      <h1 id = "title">Solitaire</h1>
       <div id='main_pile'>
-        <h1>main pile</h1>
         <div id="main_cards" v-if="(cards.length)>0">
           <img v-on:click="on_click" draggable = "false" src="images/bowsette.jpg"></img>
         </div>
@@ -32,12 +30,12 @@
       <div id="playing_field">
         <div id="pile_1">
           <div class="drop_zone" @dragover="drag_over" @drop="on_drop">
-            <h1 v-bind:style="{'margin-bottom':h1_margin+'vh'}" >Pile 1</h1>
+            <h1 v-bind:style="{'margin-bottom':h1_margin+'vmin'}" ></h1>
             <div v-for="(card, index) in cards">
-              <div v-bind:style="{'margin-top':card_margin+'vh'}" v-if="card.active==true">
+              <div v-bind:style="{'margin-top':card_margin+'vmin'}" v-if="card.active==true">
                 <card-item  @dragstart.native = "on_drag_start" :card_img="card.img" :card_id="card.code"></card-item>
               </div>
-              <div v-bind:style="{'margin-top':card_margin+'vh'}" v-else> 
+              <div v-bind:style="{'margin-top':card_margin+'vmin'}" v-else> 
                 <img draggable="false" src="images/bowsette.jpg"></img>
               </div>
             </div>
@@ -46,12 +44,12 @@
   
         <div  id="pile_2">
           <div class="drop_zone" @dragover="drag_over" @drop="on_drop">
-            <h1 v-bind:style="{'margin-bottom':h1_margin+'vh'}" >Pile 2</h1>
+          <h1 v-bind:style="{'margin-bottom':h1_margin+'vmin'}" ></h1>
             <div v-for="(card, index) in cards">
-              <div v-bind:style="{'margin-top':card_margin+'vh'}" v-if="card.active==true">
+              <div v-bind:style="{'margin-top':card_margin+'vmin'}" v-if="card.active==true">
                 <card-item  @dragstart.native = "on_drag_start" :card_img="card.img" :card_id="card.code"></card-item>
               </div>
-              <div v-bind:style="{'margin-top':card_margin+'vh'}" v-else> 
+              <div v-bind:style="{'margin-top':card_margin+'vmin'}" v-else> 
                 <img draggable = "false" src="images/bowsette.jpg"></img>
               </div>
             </div>
@@ -60,12 +58,12 @@
   
         <div id="pile_3">
           <div class="drop_zone" @dragover="drag_over" @drop="on_drop">
-            <h1 v-bind:style="{'margin-bottom':h1_margin+'vh'}" >Pile 3</h1>
+            <h1 v-bind:style="{'margin-bottom':h1_margin+'vmin'}" ></h1>
             <div v-for="(card, index) in cards">
-              <div v-bind:style="{'margin-top':card_margin+'vh'}" v-if="card.active==true">
+              <div v-bind:style="{'margin-top':card_margin+'vmin'}" v-if="card.active==true">
                 <card-item  @dragstart.native = "on_drag_start" :card_img="card.img" :card_id="card.code"></card-item>
               </div>
-              <div v-bind:style="{'margin-top':card_margin+'vh'}" v-else> 
+              <div v-bind:style="{'margin-top':card_margin+'vmin'}" v-else> 
                 <img draggable = "false" src="images/bowsette.jpg"></img>
               </div>
             </div>
@@ -74,12 +72,12 @@
   
         <div id="pile_4">
           <div class="drop_zone" @dragover="drag_over" @drop="on_drop">
-            <h1 v-bind:style="{'margin-bottom':h1_margin+'vh'}" >Pile 4</h1>
+            <h1 v-bind:style="{'margin-bottom':h1_margin+'vmin'}" ></h1>
             <div  v-for="(card, index) in cards">
-              <div v-bind:style="{'margin-top':card_margin+'vh'}" v-if="card.active==true">
+              <div v-bind:style="{'margin-top':card_margin+'vmin'}" v-if="card.active==true">
                 <card-item  @dragstart.native = "on_drag_start" :card_img="card.img" :card_id="card.code"></card-item>
               </div>
-              <div v-bind:style="{'margin-top':card_margin+'vh'}" v-else> 
+              <div v-bind:style="{'margin-top':card_margin+'vmin'}" v-else> 
                 <img draggable = "false" src="images/bowsette.jpg"></img>
               </div>
             </div>
@@ -88,12 +86,12 @@
   
         <div id="pile_5">
           <div class="drop_zone" @dragover="drag_over" @drop="on_drop">
-            <h1 v-bind:style="{'margin-bottom':h1_margin+'vh'}" >Pile 5</h1>
+            <h1 v-bind:style="{'margin-bottom':h1_margin+'vmin'}" ></h1>
             <div  v-for="(card, index) in cards">
-              <div v-bind:style="{'margin-top':card_margin+'vh'}" v-if="card.active==true">
+              <div v-bind:style="{'margin-top':card_margin+'vmin'}" v-if="card.active==true">
                 <card-item  @dragstart.native = "on_drag_start" :card_img="card.img" :card_id="card.code"></card-item>
               </div>
-              <div v-bind:style="{'margin-top':card_margin+'vh'}" v-else> 
+              <div v-bind:style="{'margin-top':card_margin+'vmin'}" v-else> 
                 <img draggable = "false" src="images/bowsette.jpg"></img>
               </div>
             </div>
@@ -102,12 +100,12 @@
   
         <div id="pile_6">
           <div class="drop_zone" @dragover="drag_over" @drop="on_drop">
-            <h1 v-bind:style="{'margin-bottom':h1_margin+'vh'}">Pile 6</h1>
+            <h1 v-bind:style="{'margin-bottom':h1_margin+'vmin'}" ></h1>
             <div  v-for="(card, index) in cards">
-              <div v-bind:style="{'margin-top':card_margin+'vh'}" v-if="card.active==true">
+              <div v-bind:style="{'margin-top':card_margin+'vmin'}" v-if="card.active==true">
                 <card-item  @dragstart.native = "on_drag_start" :card_img="card.img" :card_id="card.code"></card-item>
               </div>
-              <div v-bind:style="{'margin-top':card_margin+'vh'}" v-else> 
+              <div v-bind:style="{'margin-top':card_margin+'vmin'}" v-else> 
                 <img draggable = "false" src="images/bowsette.jpg"></img>
               </div>
             </div>
@@ -116,12 +114,12 @@
   
         <div id="pile_7">
           <div class="drop_zone" @dragover="drag_over" @drop="on_drop">
-            <h1 v-bind:style="{'margin-bottom':h1_margin+'vh'}">Pile 7</h1>
+            <h1 v-bind:style="{'margin-bottom':h1_margin+'vmin'}" ></h1>
             <div  v-for="(card, index) in cards">
-              <div  v-bind:style="{'margin-top':card_margin+'vh'}" v-if="card.active==true">
+              <div  v-bind:style="{'margin-top':card_margin+'vmin'}" v-if="card.active==true">
                 <card-item @dragstart.native = "on_drag_start" :card_img="card.img" :card_id="card.code"></card-item>
               </div>
-              <div v-bind:style="{'margin-top':card_margin+'vh'}" v-else> 
+              <div v-bind:style="{'margin-top':card_margin+'vmin'}" v-else> 
                 <img draggable = "false" src="images/bowsette.jpg"></img>
               </div>
             </div>
@@ -181,5 +179,6 @@
   <script src="javascript/finished_mixin.js"></script>
   <script src="javascript/dragging_mixin.js"></script>
   <script src="javascript/restart_mixin.js"></script>
-  <script src="javascript/vue-script.js"></script>
+  <script src="javascript/main_pile.js"></script>
+  <script src="javascript/vue_script.js"></script>
 </body>

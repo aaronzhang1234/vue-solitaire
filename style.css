@@ -9,14 +9,14 @@ h1#title{
     text-align:center;
     font-size:4vw;
 }
-#app-1{
-    clear:both;
-}
 #finished_piles{
+    margin-top:8vh;
+    height: 50vh;
     vertical-align:top;
     text-align:center;
     display:inline-block;
     width:20vw;
+    border-left: 5px solid black;
 }
 #finished_piles>div{
     width:auto;
@@ -35,25 +35,21 @@ img{
     width:5vw;
     height:auto; 
 }
-.empty_deck{      
-    width:5vw;
-    height:10vw;
-    background-color:black;
-}
 div#playing_field{
     vertical-align:top;
     display:inline-block;
     text-align:center;
-    height:70vh;
-    width:60vw;
+    height:90vh;
+    width:60%;
 }
 div#main_pile{
+    border-right: 5px solid black;
+    margin-top:8vh;
+    height:50vh;
     vertical-align:top;
     text-align:center;
     display:inline-block;
     width:15vw;
-}
-div#main_pile>div{
 }
 div#playing_field>div{
     width:auto;
@@ -62,7 +58,7 @@ div#playing_field>div{
     vertical-align:top;
 }
 div#playing_field>div>div>h1{
-    margin-bottom:4vh;
+    margin-bottom:4em;
     text-align:center;
 }
 div#playing_field>div>div>div{
@@ -89,4 +85,13 @@ div#loader{
 @keyframes spin{
     0%{transform: rotate(0deg);}
     100%{transform: rotate(360deg)};
+}
+div#id{
+    float:bottom;
+    clear:both;
+}
+div#divider{
+    width:1vw;
+    background-color:black;
+    height:100%
 }

@@ -8,7 +8,11 @@ var playing_field_mixin={
             }
         },
         h1_margin:function(){
-            return -(this.card_margin);
+            if(this.cards.length == 0){
+                return 8;
+            }else{
+                return -(this.card_margin) + 8;
+            }
         }
     }, 
     methods:{
