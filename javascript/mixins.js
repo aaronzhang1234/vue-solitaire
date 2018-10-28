@@ -2,9 +2,12 @@ var playing_field_mixin={
     computed:{
         card_margin:function(){
             if(this.cards == null || this.cards.length<=7){
-                return -9;
+                return -7;
+            }else if(this.cards.length>10){
+                let margin_start = 7 - ((this.cards.length -10)*(4/18));               
+                return -(margin_start+(.40*(this.cards.length-7)));
             }else{
-                return -(9+(.40*(this.cards.length-7)));
+                return -(7+(.40*(this.cards.length-7)));
             }
         },
         h1_margin:function(){
@@ -25,8 +28,6 @@ var playing_field_mixin={
             var from_card_code = e.dataTransfer.getData("card_id");
             var to_pile = this.get_pile_name(e.toElement);
             var to_card_code = this.get_last_code(to_pile); 
-            console.log(to_card_code);
-            console.log(from_card_code);
             var correct_logic = this.is_correct_logic(to_card_code, from_card_code);
             if(correct_logic){ 
                 this.add_card(to_pile, from_pile, from_card_code);
@@ -146,42 +147,31 @@ var playing_field_mixin={
             return false;
         },
         add_card:function(pile_name_to, pile_name_from, from_card_code){
+            var shuffle = new Audio('sounds/papershuffle.mp3');
+            shuffle.volume = .2;
+            shuffle.play();
             var cards_to_add = this.get_card(pile_name_from, from_card_code)
-            console.log(cards_to_add);
             switch(pile_name_to){
                 case 'pile_1':
                    pile_1.cards = pile_1.cards.concat(cards_to_add); 
-                   console.log(pile_1.cards);
                    break;
                 case 'pile_2':
                    pile_2.cards = pile_2.cards.concat(cards_to_add);
-                   console.log(pile_2.cards);
-
                    break;
                 case 'pile_3':
                    pile_3.cards = pile_3.cards.concat(cards_to_add);
-                   console.log(pile_3.cards);
-
                    break;
                 case 'pile_4':
                    pile_4.cards = pile_4.cards.concat(cards_to_add);
-                   console.log(pile_4.cards);
-
                    break;
                 case 'pile_5':
                    pile_5.cards = pile_5.cards.concat(cards_to_add);
-                   console.log(pile_5.cards);
-
                    break;
                 case 'pile_6':
                    pile_6.cards = pile_6.cards.concat(cards_to_add);
-                   console.log(pile_6.cards);
-
                    break;
                 case 'pile_7':
                    pile_7.cards = pile_7.cards.concat(cards_to_add);
-                   console.log(pile_7.cards);
-
                    break;
             }
             
@@ -191,6 +181,11 @@ var playing_field_mixin={
             switch(pile_name){
                 case 'playable_cards':
                    cards_to_remove= main_pile.playable_cards.pop();
+                   for(var i =0; i<main_pile.dark_cards.length;i++){
+                        if(main_pile.dark_cards[i].code == from_card_code){
+                            main_pile.dark_cards.splice(i,1);
+                        }
+                   }
                    break;
                 case 'pile_1':
                    var loc_of_card = this.get_card_location(pile_name, from_card_code);
@@ -254,7 +249,6 @@ var playing_field_mixin={
                     cards_to_remove = pile_heart.cards.pop();
                     break;
             }
-            console.log(cards_to_remove);
             return cards_to_remove;
         },
         get_card_location:function(pile_name, from_card_code){

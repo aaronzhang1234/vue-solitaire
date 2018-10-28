@@ -8,7 +8,9 @@ var obj = {
 } 
 var main_pile = { 
     cards:[],
-    playable_cards:[]
+    playable_cards:[],
+    dark_cards:[],
+    is_easy:true
 }
 var pile_1 = {
     cards:[]

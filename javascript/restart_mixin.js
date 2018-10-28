@@ -10,11 +10,11 @@ var restart_mixin={
             pile_7.cards = [];
             main_pile.cards = [];
             main_pile.playable_cards = [];
+            main_pile.dark_cards = [];
             pile_spade.cards = []
             pile_club.cards = [];
             pile_diamond.cards = [];
             pile_heart.cards = [];
-            console.log("game restartu");
             document.getElementById("start_screen").style.display="";
             document.getElementById("game_on").style.display="none";
 

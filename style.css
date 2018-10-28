@@ -7,7 +7,27 @@ body{
 }
 h1#title{
     text-align:center;
-    font-size:4vw;
+    font-size:6vw;
+}
+div#pick_difficulty{
+    margin:auto;
+    text-align:center;
+    width :50%;
+}
+div#easy_start{
+    height:50vh;
+    width:20vw;
+    margin-right:5vw;
+    float:left;
+}
+div#hard_start{
+    height:50vh;
+    width:20vw;
+    margin-left:5vw;
+    float:right;
+}
+div#easy_start>h1{
+    text-align:center;
 }
 #finished_piles{
     margin-top:8vh;
@@ -32,14 +52,14 @@ h1#title{
     text-align:center;
 }
 img{
-    width:5vw;
+    width:4em;
     height:auto; 
 }
 div#playing_field{
     vertical-align:top;
     display:inline-block;
     text-align:center;
-    height:90vh;
+    height:80vh;
     width:60%;
 }
 div#main_pile{
@@ -94,4 +114,8 @@ div#divider{
     width:1vw;
     background-color:black;
     height:100%
+}
+div#restart>input{
+    height:8vh;
+    width:auto;
 }

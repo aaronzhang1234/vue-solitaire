@@ -9,10 +9,8 @@ var finished_mixin = {
             var from_card_code = e.dataTransfer.getData("card_id");
             var to_pile = this.get_pile_name(e.toElement);
             var to_card_code = this.get_last_code(to_pile); 
-            console.log(from_pile + " " + from_card_code);
-            console.log(to_pile + " "+to_card_code);
             if(this.logic_is_correct(to_card_code, from_card_code) && this.is_single_card(from_pile, from_card_code)){
-                this.add_card(to_pile, from_pile);
+                this.add_card(to_pile, from_pile, from_card_code);
             }
         },
         get_pile_name:function(element){
@@ -64,8 +62,6 @@ var finished_mixin = {
             var to_card_suit = to_card_code[1];
             var value_correct = this.value_is_correct(to_card_value, from_card_value);
             var suit_correct  = this.suit_is_correct(to_card_suit, from_card_suit);
-            console.log(value_correct);
-            console.log(suit_correct);
             if(this.value_is_correct(to_card_value, from_card_value) && this.suit_is_correct(to_card_suit, from_card_suit)){
                 return true;
             }
@@ -94,14 +90,16 @@ var finished_mixin = {
              return false;
         },
         suit_is_correct:function(to_card_suit, from_card_suit){
-            console.log(to_card_suit +" "+ from_card_suit);
             if(to_card_suit == from_card_suit){
                 return true;
             }
             return false;
         }, 
-        add_card:function(pile_name_to, pile_name_from){
-            var card_to_add = this.get_card(pile_name_from)
+        add_card:function(pile_name_to, pile_name_from, from_card_code){
+            var shuffle = new Audio('sounds/papershuffle.mp3');
+            shuffle.volume = .2;
+            shuffle.play();
+            var card_to_add = this.get_card(pile_name_from, from_card_code)
             switch(pile_name_to){
                 case 'pile_spade':
                    pile_spade.cards.push(card_to_add); 
@@ -117,11 +115,17 @@ var finished_mixin = {
                    break;            
             } 
         },
-        get_card:function(pile_name){
+        get_card:function(pile_name, from_card_code){
             var card;
             switch(pile_name){
                 case 'playable_cards':
                    card = main_pile.playable_cards.pop();
+                   for(var i =0; i<main_pile.dark_cards.length;i++){
+                        if(main_pile.dark_cards[i].code == from_card_code){
+                            main_pile.dark_cards.splice(i,1);
+                        }
+                   }
+
                    break;
                 case 'pile_1':
                    card = pile_1.cards.pop(); 

@@ -1,6 +1,11 @@
 var startup_mixin = {
     methods:{
-        get_deck(){
+        get_deck(is_easy){
+            if(is_easy){
+                main_pile.is_easy = true;
+            }else{
+                main_pile.is_easy = false;
+            }
             obj.show_click_cards = false;
             obj.show_loading = true;
              axios
@@ -32,7 +37,6 @@ var startup_mixin = {
                 for(var i =0; i<main_pile.cards.length; i++){
                     main_pile.cards[i].active=true;
                 }
-                console.log("game startu");
                 document.getElementById("start_screen").style.display="none";
                 document.getElementById("game_on").style.display="";
                 obj.show_click_cards = true;

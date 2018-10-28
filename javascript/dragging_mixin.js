@@ -1,7 +1,6 @@
 var dragging_mixin = {
     methods:{
         on_drag_start: function(e){
-            console.log('hello');
             var card_id = e.srcElement.id;
             e.dataTransfer.setData("card_id", card_id);
             var from_pile = this.get_pile_name(e.srcElement);
