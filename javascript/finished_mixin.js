@@ -12,16 +12,7 @@ var finished_mixin = {
             if(this.logic_is_correct(to_card_code, from_card_code) && this.is_single_card(from_pile, from_card_code)){
                 this.add_card(to_pile, from_pile, from_card_code);
             }
-        },
-        get_pile_name:function(element){
-            while(element){ 
-                if(element.id!=null && (element.id).substring(0,4)=="pile"){
-                    return element.id
-                }
-                element = element.parentElement;
-            }
-            return element.id;
-        },
+        },        
         get_last_code:function(pile_name){
             switch(pile_name){
                 case 'pile_spade':
@@ -74,7 +65,9 @@ var finished_mixin = {
                 ['2' ,  2 ],
                 ['3' ,  3 ],
                 ['4' ,  4 ],
-                ['5' ,  5 ], ['6' ,  6 ], ['7' ,  7 ],
+                ['5' ,  5 ], 
+                ['6' ,  6 ], 
+                ['7' ,  7 ],
                 ['8' ,  8 ],
                 ['9' ,  9 ],
                 ['0' , 10 ],
@@ -99,7 +92,11 @@ var finished_mixin = {
             var shuffle = new Audio('sounds/papershuffle.mp3');
             shuffle.volume = .2;
             shuffle.play();
-            var card_to_add = this.get_card(pile_name_from, from_card_code)
+            var card_to_remove_info = this.get_card(pile_name_from, from_card_code);
+            var card_to_add = card_to_remove_info.card;
+            var previously_active = card_to_remove_info.previously_active
+            move = {type:"card_add_final", from_pile:pile_name_from, to_pile:pile_name_to, card_code:from_card_code, cards_got:null, previously_active:previously_active};
+            undo_el.undos.push(move);
             switch(pile_name_to){
                 case 'pile_spade':
                    pile_spade.cards.push(card_to_add); 
@@ -116,7 +113,8 @@ var finished_mixin = {
             } 
         },
         get_card:function(pile_name, from_card_code){
-            var card;
+            let card;
+            let previously_active = false;
             switch(pile_name){
                 case 'playable_cards':
                    card = main_pile.playable_cards.pop();
@@ -129,52 +127,59 @@ var finished_mixin = {
                    break;
                 case 'pile_1':
                    card = pile_1.cards.pop(); 
-                   if(pile_1.cards.length>0){
+                   if(pile_1.cards.length>0 && pile_1.cards[(pile_1.cards.length)-1].active!=true){
                        pile_1.cards[(pile_1.cards.length)-1].active=true;
+                       previously_active = true;
                    } 
                    break;
                 case 'pile_2':
                    card = pile_2.cards.pop();
-                   if(pile_2.cards.length>0){
+                   if(pile_2.cards.length>0 && pile_2.cards[(pile_2.cards.length)-1].active!=true){
                        pile_2.cards[(pile_2.cards.length)-1].active=true;
+                       previously_active = true;
                    }
                    break;
                 case 'pile_3':
                    card = pile_3.cards.pop();
-                   if(pile_3.cards.length>0){
+                   if(pile_3.cards.length>0 && pile_3.cards[(pile_3.cards.length)-1].active!=true){
                        pile_3.cards[(pile_3.cards.length)-1].active=true;
+                       previously_active = true;
                    }
  
                    break;
                 case 'pile_4':
                    card = pile_4.cards.pop();
-                   if(pile_4.cards.length>0){
+                   if(pile_4.cards.length>0 && pile_4.cards[(pile_4.cards.length)-1].active!=true){
                        pile_4.cards[(pile_4.cards.length)-1].active=true;
+                       previously_active = true;
                    }
  
                    break;
                 case 'pile_5':
                    card = pile_5.cards.pop();
-                   if(pile_5.cards.length>0){
+                   if(pile_5.cards.length>0 && pile_5.cards[(pile_5.cards.length)-1].active!=true){
                        pile_5.cards[(pile_5.cards.length)-1].active=true;
+                       previously_active = true;
                    }
  
                    break;
                 case 'pile_6':
                    card = pile_6.cards.pop();
-                   if(pile_6.cards.length>0){
+                   if(pile_6.cards.length>0 && pile_6.cards[(pile_6.cards.length)-1].active!=true){
                        pile_6.cards[(pile_6.cards.length)-1].active=true;
+                       previously_active = true;
                    }
  
                    break;
                 case 'pile_7':
                    card = pile_7.cards.pop();
-                   if(pile_7.cards.length>0){
+                   if(pile_7.cards.length>0 && pile_7.cards[(pile_7.cards.length)-1].active!=true){
                        pile_7.cards[(pile_7.cards.length)-1].active=true;
+                       previously_active = true;
                    } 
                    break;
             }
-            return card;
+            return {card:card, previously_active:previously_active};
         },
         is_single_card:function(pile_name, from_card_code){
             switch(pile_name){

@@ -17,7 +17,7 @@ var restart_mixin={
             pile_heart.cards = [];
             document.getElementById("start_screen").style.display="";
             document.getElementById("game_on").style.display="none";
-
+            undo_el.undos = [];
         }
     }
 }

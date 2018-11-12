@@ -1,6 +1,10 @@
 base_url = "https://deckofcardsapi.com/api/deck/";
 deck_id = '';
-var obj = {
+var startup_mixin = startup_mixin;
+var undo_el = {
+    undos: []
+}
+var start_el = {
     deck_id: '',
     before_game:true,
     show_click_cards:true,
@@ -53,65 +57,65 @@ Vue.component("card-item",{
 var main_pile_div = new Vue({
     el: '#main_pile',
     data: main_pile,
-    mixins:[one_card_mixin]
+    mixins:[generic_mixin, one_card_mixin]
 })
 
 var pile_1_div = new Vue({
     el: '#pile_1',
     data: pile_1,
-    mixins:[playing_field_mixin,dragging_mixin]
+    mixins:[generic_mixin, playing_field_mixin,dragging_mixin]
 })
 var pile_2_div = new Vue({
     el: '#pile_2',
     data: pile_2,
-    mixins:[playing_field_mixin,dragging_mixin]
+    mixins:[generic_mixin, playing_field_mixin,dragging_mixin]
 })
 var pile_3_div = new Vue({
     el: '#pile_3',
     data: pile_3,
-    mixins:[playing_field_mixin,dragging_mixin]
+    mixins:[generic_mixin, playing_field_mixin,dragging_mixin]
 })
 var pile_4_div = new Vue({
     el: '#pile_4',
     data: pile_4,
-    mixins:[playing_field_mixin,dragging_mixin]
+    mixins:[generic_mixin, playing_field_mixin,dragging_mixin]
 })
 var pile_5_div = new Vue({
     el: '#pile_5',
     data: pile_5,
-    mixins:[playing_field_mixin,dragging_mixin]
+    mixins:[generic_mixin, playing_field_mixin,dragging_mixin]
 })
 var pile_6_div = new Vue({
     el: '#pile_6',
     data: pile_6,
-    mixins:[playing_field_mixin,dragging_mixin]
+    mixins:[generic_mixin, playing_field_mixin,dragging_mixin]
 })
 var pile_7_div = new Vue({
     el: '#pile_7',
     data: pile_7,   
-    mixins:[playing_field_mixin,dragging_mixin]
+    mixins:[generic_mixin, playing_field_mixin,dragging_mixin]
 })
 
 
 var spade_div = new Vue({
     el: '#pile_spade',
     data: pile_spade,
-    mixins:[finished_mixin,dragging_mixin]
+    mixins:[generic_mixin, finished_mixin,dragging_mixin]
 })
 var club_div = new Vue({
     el: '#pile_club',
     data: pile_club,
-    mixins:[finished_mixin,dragging_mixin]
+    mixins:[generic_mixin, finished_mixin,dragging_mixin]
 })
 var diamond_div = new Vue({
     el: '#pile_diamond',
     data: pile_diamond,
-    mixins:[finished_mixin,dragging_mixin]
+    mixins:[generic_mixin, finished_mixin,dragging_mixin]
 })
 var heart_div = new Vue({
     el: '#pile_heart',
     data: pile_heart,
-    mixins:[finished_mixin,dragging_mixin]
+    mixins:[generic_mixin, finished_mixin,dragging_mixin]
 })
 var restart = new Vue({
     el: '#restart',
@@ -119,7 +123,12 @@ var restart = new Vue({
 })
 var start_game = new Vue({
     el: '#start_screen',
-    data: obj,
+    data: start_el,
     mixins:[startup_mixin]
+})
+var undo_div = new Vue({
+    el: '#undo',
+    data: undo_el,
+    mixins:[generic_mixin, undo_mixin]
 })
 

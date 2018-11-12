@@ -6,12 +6,13 @@ var startup_mixin = {
             }else{
                 main_pile.is_easy = false;
             }
-            obj.show_click_cards = false;
-            obj.show_loading = true;
+            start_el.show_click_cards = false;
+
+            start_el.show_loading = true;
              axios
              .get(base_url+'new/shuffle/')
              .then(function(response){
-                obj.deck_id = response.data.deck_id;
+                start_el.deck_id = response.data.deck_id;
                 start_game.place_cards_in_main();
              });
 
@@ -39,8 +40,8 @@ var startup_mixin = {
                 }
                 document.getElementById("start_screen").style.display="none";
                 document.getElementById("game_on").style.display="";
-                obj.show_click_cards = true;
-                obj.show_loading = false;
+                start_el.show_click_cards = true;
+                start_el.show_loading = false;
             });
         },
         push_card(response, index){

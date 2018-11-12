@@ -188,6 +188,9 @@
       </div>
     </div>
 
+    <div id="undo">
+      <button v-on:click="on_click" >Undo</button>
+    </div>
     <div id="restart">      
       <h1>Restart Game</h1>
       <input type="image" src="images/restart.jpeg" v-on:click="restart" ></input>
@@ -200,5 +203,7 @@
   <script src="javascript/dragging_mixin.js"></script>
   <script src="javascript/restart_mixin.js"></script>
   <script src="javascript/main_pile.js"></script>
+  <script src="javascript/undo_mixin.js"></script>
+  <script src="javascript/generic_mixins.js"></script>
   <script src="javascript/vue_script.js"></script>
 </body>

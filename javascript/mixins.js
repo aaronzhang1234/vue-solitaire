@@ -33,15 +33,6 @@ var playing_field_mixin={
                 this.add_card(to_pile, from_pile, from_card_code);
             }
         }, 
-        get_pile_name:function(element){
-            while(element){ 
-                if(element.id!=null && (element.id).substring(0,4)=="pile"){
-                    return element.id
-                }
-                element = element.parentElement;
-            }
-            return element.id;
-        },
         get_last_code:function(pile_name){
             switch(pile_name){
                 case 'pile_1':
@@ -150,7 +141,12 @@ var playing_field_mixin={
             var shuffle = new Audio('sounds/papershuffle.mp3');
             shuffle.volume = .2;
             shuffle.play();
-            var cards_to_add = this.get_card(pile_name_from, from_card_code)
+            let removed_data = this.get_card(pile_name_from, from_card_code)
+            let cards_to_add = removed_data.cards_to_remove;
+            let previous_active = removed_data.previous_active;
+            console.log(previous_active);
+            var move = {type:"move", from_pile:pile_name_from, to_pile:pile_name_to, card_code:from_card_code, cards_got:null, previously_active: previous_active};
+            undo_el.undos.push(move); 
             switch(pile_name_to){
                 case 'pile_1':
                    pile_1.cards = pile_1.cards.concat(cards_to_add); 
@@ -178,6 +174,7 @@ var playing_field_mixin={
         },
         get_card:function(pile_name, from_card_code){
             var cards_to_remove;
+            var previous_active = false;
             switch(pile_name){
                 case 'playable_cards':
                    cards_to_remove= main_pile.playable_cards.pop();
@@ -190,49 +187,56 @@ var playing_field_mixin={
                 case 'pile_1':
                    var loc_of_card = this.get_card_location(pile_name, from_card_code);
                    cards_to_remove = pile_1.cards.splice(loc_of_card); 
-                   if(pile_1.cards.length>0){
+                   if(pile_1.cards.length>0 && pile_1.cards[(pile_1.cards.length)-1].active != true){
                        pile_1.cards[(pile_1.cards.length)-1].active=true;
+                       previous_active = true;
                    } 
                    break;
                 case 'pile_2':
                    var loc_of_card = this.get_card_location(pile_name, from_card_code);
                    cards_to_remove = pile_2.cards.splice(loc_of_card); 
-                   if(pile_2.cards.length>0){
+                   if(pile_2.cards.length>0 && pile_2.cards[(pile_2.cards.length)-1].active != true ){
+                       previous_active = true;                      
                        pile_2.cards[(pile_2.cards.length)-1].active=true;
                    }
                    break;
                 case 'pile_3':
                    var loc_of_card = this.get_card_location(pile_name, from_card_code);
                    cards_to_remove = pile_3.cards.splice(loc_of_card); 
-                   if(pile_3.cards.length>0){
+                   if(pile_3.cards.length>0 &&  pile_3.cards[(pile_3.cards.length)-1].active != true){
+                       previous_active = true;
                        pile_3.cards[(pile_3.cards.length)-1].active=true;
                    } 
                    break;
                 case 'pile_4':
                    var loc_of_card = this.get_card_location(pile_name, from_card_code);
                    cards_to_remove = pile_4.cards.splice(loc_of_card); 
-                   if(pile_4.cards.length>0){
+                   if(pile_4.cards.length>0 && pile_4.cards[(pile_4.cards.length)-1].active != true){
+                       previous_active = true;
                        pile_4.cards[(pile_4.cards.length)-1].active=true;
                    } 
                    break;
                 case 'pile_5':
                    var loc_of_card = this.get_card_location(pile_name, from_card_code);
                    cards_to_remove = pile_5.cards.splice(loc_of_card); 
-                   if(pile_5.cards.length>0){
+                   if(pile_5.cards.length>0 && pile_5.cards[(pile_5.cards.length)-1].active != true){
+                       previous_active = true;
                        pile_5.cards[(pile_5.cards.length)-1].active=true;
                    } 
                    break;
                 case 'pile_6':
                    var loc_of_card = this.get_card_location(pile_name, from_card_code);
                    cards_to_remove = pile_6.cards.splice(loc_of_card); 
-                   if(pile_6.cards.length>0){
+                   if(pile_6.cards.length>0 && pile_6.cards[(pile_6.cards.length)-1].active != true){
+                       previous_active = true;
                        pile_6.cards[(pile_6.cards.length)-1].active=true;
                    } 
                    break;
                 case 'pile_7':
                    var loc_of_card = this.get_card_location(pile_name, from_card_code);
                    cards_to_remove = pile_7.cards.splice(loc_of_card); 
-                   if(pile_7.cards.length>0){
+                   if(pile_7.cards.length>0 && pile_7.cards[(pile_7.cards.length)-1].active != true){
+                       previous_active = true;
                        pile_7.cards[(pile_7.cards.length)-1].active=true;
                    } 
                    break;
@@ -249,67 +253,7 @@ var playing_field_mixin={
                     cards_to_remove = pile_heart.cards.pop();
                     break;
             }
-            return cards_to_remove;
-        },
-        get_card_location:function(pile_name, from_card_code){
-            switch(pile_name){
-                case 'pile_1':
-                    for(var i=0; i<pile_1.cards.length;i++){
-                        if(pile_1.cards[i].code == from_card_code){
-                            return i;
-                        }
-                    }
-                    return -1;
-                    break;
-                case 'pile_2':
-                    for(var i=0; i<pile_2.cards.length;i++){
-                        if(pile_2.cards[i].code == from_card_code){
-                            return i;
-                        }
-                    }
-                    return -1;
-                    break;
-                case 'pile_3':
-                    for(var i=0; i<pile_3.cards.length;i++){
-                        if(pile_3.cards[i].code == from_card_code){
-                            return i;
-                        }
-                    }
-                    return -1;
-                    break;
-                case 'pile_4':
-                    for(var i=0; i<pile_4.cards.length;i++){
-                        if(pile_4.cards[i].code == from_card_code){
-                            return i;
-                        }
-                    }
-                    return -1;
-                    break;
-                case 'pile_5':
-                    for(var i=0; i<pile_5.cards.length;i++){
-                        if(pile_5.cards[i].code == from_card_code){
-                            return i;
-                        }
-                    }
-                    return -1;
-                    break;
-                case 'pile_6':
-                    for(var i=0; i<pile_6.cards.length;i++){
-                        if(pile_6.cards[i].code == from_card_code){
-                            return i;
-                        }
-                    }
-                    return -1;
-                    break;
-                case 'pile_7':
-                    for(var i=0; i<pile_7.cards.length;i++){
-                        if(pile_7.cards[i].code == from_card_code){
-                            return i;
-                        }
-                    }
-                    return -1;
-                    break;
-            }
+            return {cards_to_remove:cards_to_remove, previous_active:previous_active};
         }
     }    
 }
