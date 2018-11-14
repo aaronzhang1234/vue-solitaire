@@ -3,8 +3,6 @@ var undo_mixin = {
         on_click(){
             if(this.undos.length!= 0){
                 this.undo();               
-            }else{
-                console.log("nothing to undo");
             }
         },
         undo(){
@@ -26,12 +24,10 @@ var undo_mixin = {
         },
         undo_click(move){
             if(main_pile.is_easy){
-                console.log(move);
                 let card = main_pile.playable_cards.pop();
                 main_pile.cards = main_pile.cards.concat(card);
             }else{
                 let cards_got = move.cards_got;                
-                console.log(cards_got);
                 let undoed_cards = main_pile.playable_cards.splice(-(cards_got));
                 main_pile.cards = main_pile.cards.concat(undoed_cards);
                 main_pile.dark_cards.splice(-(cards_got));
@@ -39,7 +35,6 @@ var undo_mixin = {
         },
         undo_pile(move){
             if(main_pile.is_easy){
-                console.log('undo');
                 main_pile.playable_cards = main_pile.cards;
                 main_pile.cards = [];
             }else{
@@ -63,14 +58,12 @@ var undo_mixin = {
             }
         },
         undo_move(move){
-            console.log("undo move");
             let from_pile = move.from_pile;
             let to_pile   = move.to_pile;
             let card_code = move.card_code;
             let previously_active = move.previously_active;  
             let card_loc = this.get_card_location(to_pile, card_code);
             let cards_to_add = this.get_card(to_pile, card_loc) 
-            console.log(cards_to_add);
             this.add_card(from_pile, cards_to_add, previously_active);
         },
         get_card:function(pile_name, loc_of_card){
@@ -101,7 +94,6 @@ var undo_mixin = {
             return cards_to_remove;
         },
         undo_add_final(move){
-            console.log('undo final');
             let from_pile = move.from_pile;
             let to_pile   = move.to_pile;
             let card_code = move.card_code;
@@ -127,53 +119,51 @@ var undo_mixin = {
            switch(from_pile){
                case 'playable_cards':
                    main_pile.playable_cards = main_pile.playable_cards.concat(cards_to_add);
-                   main_pile.dark_cards.unshift(cards_to_add);
+                   console.log(cards_to_add);
+                   if(Array.isArray(cards_to_add)){
+                        main_pile.dark_cards     = cards_to_add.concat(main_pile.dark_cards);
+                   }else{
+                       main_pile.dark_cards.unshift(cards_to_add);
+                   }
                    break;
                case 'pile_1':
                    if(previously_active){
-                       console.log(pile_1.cards[pile_1.cards.length-1])
                        pile_1.cards[pile_1.cards.length-1].active = false;
                    }
                    pile_1.cards = pile_1.cards.concat(cards_to_add);
                    break;
                case 'pile_2':
                    if(previously_active){
-                       console.log(pile_2.cards[pile_2.cards.length-1])
                        pile_2.cards[pile_2.cards.length-1].active = false;
                    }
                    pile_2.cards = pile_2.cards.concat(cards_to_add);
                    break;
                case 'pile_3':
                    if(previously_active){
-                       console.log(pile_3.cards[pile_3.cards.length-1])
                        pile_3.cards[pile_3.cards.length-1].active = false;
                    }
                    pile_3.cards = pile_3.cards.concat(cards_to_add);
                   break;
                case 'pile_4':
                    if(previously_active){
-                       console.log(pile_4.cards[pile_4.cards.length-1])
                        pile_4.cards[pile_4.cards.length-1].active = false;
                    }
                    pile_4.cards = pile_4.cards.concat(cards_to_add);
                   break;
                case 'pile_5':
                    if(previously_active){
-                       console.log(pile_5.cards[pile_5.cards.length-1])
                        pile_5.cards[pile_5.cards.length-1].active = false;
                    }
                    pile_5.cards = pile_5.cards.concat(cards_to_add);
                   break;
                case 'pile_6':
                    if(previously_active){
-                       console.log(pile_6.cards[pile_6.cards.length-1])
                        pile_6.cards[pile_6.cards.length-1].active = false;
                    }
                    pile_6.cards = pile_6.cards.concat(cards_to_add);
                   break;
                case 'pile_7':
                    if(previously_active){
-                       console.log(pile_7.cards[pile_7.cards.length-1])
                        pile_7.cards[pile_7.cards.length-1].active = false;
                    }
                    pile_7.cards = pile_7.cards.concat(cards_to_add);

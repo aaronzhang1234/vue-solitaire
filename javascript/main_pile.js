@@ -48,6 +48,9 @@ var one_card_mixin = {
                         getcards.reverse();
                         this.dark_cards = this.dark_cards.concat(getcards);
                     }
+                    if(this.arrayInside(this.playable_cards) || this.arrayInside(this.dark_cards)){
+                        console.log("wee woo errors");
+                    }
                 }
             }
             undo_el.undos.push(move);
@@ -55,6 +58,11 @@ var one_card_mixin = {
         on_drag_start:function(e){
             e.dataTransfer.setData("card_id", this.playable_cards[this.playable_cards.length-1].code);
             e.dataTransfer.setData("from_pile", "playable_cards");   
+        },
+        arrayInside:function(cards){
+            for(let i = 0; i<cards.length; i++){
+                return Array.isArray(cards[i]);
+            }
         }
     }
 }
