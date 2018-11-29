@@ -3,8 +3,9 @@
 </head>
 <body>
   <h1>Solitaire</h1>
+  <h2>A Brief Overview</h2>
   <img src="firsttry.gif"></img>
-  <p>Staring off, we get the cards from the api</p>
+  <p>Starting off, we get the cards from the api</p>
   <img src="getcardsvue.gif"></img>
   <p>Let's make some holding pens for these cards</p>
   <img src=getcards.gif></img>
@@ -18,7 +19,7 @@
         is_active(This tells whether a card should be face up or face down)
     }
   </pre>
-  <p>Lets make it look a little more like solitiare</p>
+  <p>Lets make it look a little more like solitaire</p>
   <img src="structure.gif"></img>
   <p>Alas, you cannot see the cards before you've used them, this is not solitaire! Fortunately for us, vue has easy html integration so one if statement later and...</p>
   <img src="bowsette.gif"></img>
@@ -28,15 +29,15 @@
   <img src="place_card.gif"></img>
   <p>We can now drag and drop the cards. As of now, this was actually one of the hardest things I've had to overcome in the creation of this app. So many different vue drag and drop add-ons and plug-ins have been killed and used by me. I've dabbled in vue-cli and npm but in the end, I only wanted to create a lightweight app and the simplest solution was just to use the HTML default drag and drop API along with Vue. This problem took me around 4 days to actually tackle.</p> 
   <p> Smoke and mirrors though, this function only gets rid of a card in the first pile and places it in the second. It's what will impress the project managers though.</p>
-  <p> Now, this is the real shit.</p>
+  <p> Now, this is the real stuff.</p>
   <img src="cardsmove.gif"></img>
-  <p> Unfortunately, the divs for dropping are reduced to nothing so you cannot drop a card into an empty div so lets just make the height a little higher in css</p>
+  <p> Unfortunately, the divs for dropping are reduced to nothing so you cannot drop a card into an empty div so let's just make the height a little higher in css</p>
   <img src="buffoutthosescratches.gif"></img>
   <p> Wew lad, the drop divs are a good size now, but the main div is lacking</p>
   <img src="changingtheheight.gif"></img>
   <p> Now we're gucci af.</p>
   <h1> This is when I actually start actively making this page</h1>
-  <p> I guess now we actually have to focus on actually doing the active cards instead of cheesing it with the last element in the array, so lets get this. Just need to change an if statement right?</p>
+  <p> I guess now we actually have to focus on actually doing the active cards instead of cheesing it with the last element in the array, so let's get this. Just need to change an if statement right?</p>
   <code>
     <pre>
       &lt;div  v-if="index==cards.length-1"&gt;
@@ -61,7 +62,7 @@
   <p> Should work right? ...... r i g h t?</p>
   <img src="thatworks.gif"></img>
   <p> Well, it actually did work, I'm amazed</p>
-  <p> As you can see though, it doesn't actually reveal the card or makes them active so lets do that. Adding to our remove card from pile function making the last item in the array active.</p>
+  <p> As you can see though, it doesn't actually reveal the card or makes them active so let's do that. Adding to our remove card from pile function making the last item in the array active.</p>
   <code>
     <pre>
       if(pile_2.cards.length>0){
@@ -80,7 +81,7 @@
   <p> There is a girl right next to me making me nervous but I'll survive this for right now</p>
   <p> Reading a quick book and I'll get back to it</p>
   <h1>Back friends</h1>
-  <p>Now let's talk about the logic of solitiare here. A card can only be placed under a card if the number is one less and the color of the card is different. Thankfully, the card code already has the card value and the suit. So i've just gotta parse it.</p>
+  <p>Now let's talk about the logic of solitaire here. A card can only be placed under a card if the number is one less and the color of the card is different. Thankfully, the card code already has the card value and the suit. So i've just gotta parse it.</p>
   <p>Here's what we got for the card suit checker</p>
   <code> 
     <pre>
@@ -134,8 +135,8 @@
   </ol>
   <p>Let's flip a coin tails for design and heads for technical stuff</p>
   <img src="flip.gif"></img>
-  <p>The gods have spoken, lets use that technical noggin</p>
-  <p>First off, lets fix the top card thing since it'll be more like solitaire then.</p>
+  <p>The gods have spoken, let's use that technical noggin</p>
+  <p>First off, let's fix the top card thing since it'll be more like solitaire then.</p>
   <p>From this</p>
   <img src="fromthis.png"></img>
   <p>To this</p>
@@ -145,14 +146,14 @@
   <p>Much better, we're actually looking like a solitaire game now, something that I could play for hours!</p>
   <p>As you've seen from the last slide, I got a little ahead of myself in this documentation and started work on the finished piles now.</p>
   <img src="movetofinished.gif"></img>
-  <p>With a snap of our hands, and working until 1:30A.M. we have finished the finished cards pile. Our solitaire game is looking to be quite the good stuff here</p>
+  <p>With a snap of our hands and working until 1:30A.M. we have finished the finished cards pile. Our solitaire game is looking to be quite the good stuff here</p>
   <img src="kingplace.gif"></img>
   <p>Dang, I am on a roll this entire week</p>
   <p>But now we get to one of the hardest parts. Which is dragging multiple cards at once instead of just one</p>
   <p>I believe this shouldn't be that hard as we can just call splice on the array instead of pop, but I've been proven wrong before many times</p>
   <img src="movestacks.gif"></img>
   <p>Ladies and Gentlemen, we got him</p>
-  <h1>Solitaire is officially done, we have made a simmple game</h1>
+  <h1>Solitaire is officially done, we have made a simple game</h1>
   <p>Now for a quick design fix, first we'll try to move the finished piles to the side of the screen</p>
   <img src="completegame.gif"></img>
   <p>May, I call for a time of silence, this is the best day of my life.</p>
@@ -172,10 +173,10 @@
   <img src="thefollyofman.gif"></img>
   <p>Lets add some more functionality</p>
   <video controls loop autoplay src="StartAndRestart.mp4"></video>
-  <p>As I was working on this solitiare game, the new Mac Mojave came out along with a very very nice capture feature. Actually saves it in a compact and smooth MP4 instead of a gif</p>
+  <p>As I was working on this solitaire game, the new Mac Mojave came out along with a very very nice capture feature. Actually saves it in a compact and smooth MP4 instead of a gif</p>
   <p>And let's change the design once again to make it more sleek.</p>
   <img src="redesign.png"></img>
-  <p>Now lets make this solitiare game a little harder first by preparing our main pile to handle three cards</p>
+  <p>Now let's make this solitaire game a little harder first by preparing our main pile to handle three cards</p>
   <video  controls loop autoplay src="NewCardShow.mp4"></video>
   <p>And we also have a difficulty selector too!</p>
   <video controls loop autoplay src="harddifficulty.mp4"></video>

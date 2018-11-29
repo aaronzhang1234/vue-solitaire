@@ -3,6 +3,8 @@ img,video{
     width:auto;
 }
 img, ul, h1, h2 ,p,video{
+    padding-top:2vh;
+    padding-bottom:2vh;
     text-align:center;
     display:block;
     margin:auto;
